@@ -2,59 +2,25 @@ import React from 'react';
 import { FaGoogle } from "react-icons/fa";
 
 
-function Signup() {
-    // const history = useHistory()
-
-    // function handleSignup(e){
-    //     e.preventDefault()
-
-    //     const form = e.target;
-    //     const user = {
-    //         fullname: form[0].value,
-    //         username: form[1].value,
-    //         email: form[2].value,
-    //         password: form[3].value,
-    //     }
-
-    //     fetch("/signup", {
-    //         method: "POST",
-    //         headers: {
-    //             "Content-type": "application/json"
-    //         },
-    //         body: JSON.stringify(user)
-    //     })
-    // }
-
-    // useEffect(() => {
-    //     fetch("/isUserAuth", {
-    //         headers: {
-    //             "x-access-token": localStorage.getItem('token')
-    //         }
-    //     })
-    //     .then(res => res.json())
-    //     .then(data => data.isLoggedIn ? history.push("/dashboard"): null)
-    // }, [])
-
-
-    // useEffect(() => {
-    //     const requestOptions = {
-    //         method: 'POST',
-    //         headers: {'Content-Type': 'application/json'},
-    //         body: JSON.stringify({ title: 'React Hook'})
-    //     }
-    //     fetch('/signup', requestOptions)
-    //         .then(res => res.json())
-    //         .then(data => console.log(data));
-    // });
-
-
+function SignIn() {
   return (
     <div className="bg-black h-screen text-white flex flex-col items-center">
-    <form method='POST' onSubmit={(event) => handleSignup(event)}>
+        <div className='bg-white text-black h-[50rem] w-[29rem] mt-[3rem] rounded-3xl p-9'>
+            <div className="flex flex-col items-center">
+                <h1 className="font-bold mt-5 text-3xl">SIGN IN FOR FREE</h1>
+            </div>
+            <div className='flex flex-col items-center relative'>
+                <h1 className='text-[8rem] font-bold text-transparent bg-clip-text bg-gradient-to-br from-pink-500 to-orange-400'>THE</h1>
+                <h1 className='text-[8rem] font-bold absolute top-[7rem] text-transparent bg-clip-text bg-gradient-to-br from-orange-400 to-pink-500'>POST</h1>
+            </div>
+        </div>
+    </div>
+  )
+    {/* <form method='POST' onSubmit={(event) => handleSignup(event)}>
 
         <div className="bg-white text-black h-[50rem] w-[29rem] mt-[3rem] rounded-3xl">
             <div className="flex flex-col items-center">
-                <h1 className="font-bold mt-5 text-3xl">SIGN UP FOR FREE</h1>
+                <h1 className="font-bold mt-5 text-3xl">SIGN IN FOR FREE</h1>
             </div>
             <div className="p-[4.5rem]">
                 <div>
@@ -94,9 +60,7 @@ function Signup() {
                 </div>
             </div>
         </div>
-    </form>
-    </div>
-  )
+    </form> */}
 }
 
-export default Signup
+export default SignIn;

@@ -10,4 +10,8 @@
     .btn-div {
         @apply transition ease-in duration-200 cursor-pointer hover:text-orange-300;
     }
+
+    .active{
+        @apply text-orange-500;
+    }
 }

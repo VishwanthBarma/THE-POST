@@ -1,13 +1,47 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { IoSearch } from 'react-icons/io5';
 import SuggPeople from './SuggPeople';
+import { getSession, useSession } from 'next-auth/react';
+import { db } from "../firebase";
+import { collection, query, where, getDocs, limit, orderBy, onSnapshot } from "firebase/firestore";
+import { PermPhoneMsg } from '@material-ui/icons';
+
 
 
 function RightBar() {
-  return (
-      <div className="p-4 flex flex-col space-y-7">
+  const {data: session} = useSession();
+  const [people, setPeople] = useState([]);
 
-        <div className="p-4 bg-slate-100 rounded-xl px-9 shadow-sm">
+  useEffect(() => 
+      onSnapshot(query(collection(db, "users")),
+        (snapshot) => {
+          console.log(snapshot.docs);
+          setPeople(snapshot.docs);
+        }
+      )
+  ,[db]);
+
+  // useEffect(() => {
+  //   console.log("I am entered...");
+  //   async function getTheData(){
+  //     const querySnapshot = await getDocs(collection(db, "users"));
+
+  //     querySnapshot.forEach((doc) => {
+  //       setPeople((prevData) => [...prevData, doc.data()])
+  //       console.log("Reached..");
+  //     })
+  //   }
+  //   getTheData()
+  // }, [])
+
+
+  return (
+    <div className="p-4 flex flex-col space-y-7">
+
+    {
+      session ? 
+      <>
+      <div className="p-4 bg-slate-100 rounded-xl px-9 shadow-sm">
             <div className="cursor-pointer flex items-center space-x-2 relative mr-36">
                 <IoSearch className="shrink-0 h-6 w-6"/>
                 <input className="cursor-pointer absolute bg-transparent text-black placeholder-gray-700 pl-6 outline-none" type="text" placeholder="search for people"></input>
@@ -19,16 +53,32 @@ function RightBar() {
         </div>
 
         <div className="flex flex-col space-y-6">
-        <SuggPeople />
-        <SuggPeople />
-        <SuggPeople />
-        <SuggPeople />
+        {
+          people.slice(0,5).map((person) => {
+            person = person.data();
+            return(
+            <SuggPeople
+              dp={person.dp}
+              fullname={person.fullname}
+              username={person.username}
+            />
+            )
+          })
+        }
 
         </div>
+      </>
+      :
 
+      <>
+        <div className='p-4 flex flex-col space-y-4 items-center'>
+          <h1 className='font-semibold text-lg'>Sign In For Free</h1>
+          <p className='p-1 italic'>This web app is built only based on educational purposes, but not for commercial purpose.</p>
+        </div>
+      </>
+    }
 
-
-      </div>
+    </div>
   )
 }
 

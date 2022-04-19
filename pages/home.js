@@ -3,7 +3,9 @@ import LeftBar from '../components/LeftBar';
 import Feed from '../components/Feed';
 import RightBar from '../components/RightBar';
 
+
 function Main() {
+
   return (
     <div>
         <div>

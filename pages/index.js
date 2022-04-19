@@ -1,10 +1,11 @@
+import { useSession } from "next-auth/react";
+import { useEffect } from "react";
 import Main from "../components/Main";
-import HomePage from "../components/HomePage";
 
 export default function Home() {
   return (
     <div>
-      <HomePage />
+      <Main />
     </div>
   )
 }
