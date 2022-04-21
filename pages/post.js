@@ -1,13 +1,12 @@
-import React, { useState } from 'react';
-import LeftBar from './LeftBar';
-import Feed from './Feed';
-import RightBar from './RightBar';
-import Postinput from './Postinput';
+import React from 'react';
+import LeftBar from '../components/LeftBar';
+import Feed from '../components/Feed';
+import RightBar from '../components/RightBar';
+import Postinput from '../components/Postinput';
 import { useSession } from 'next-auth/react';
 
-function Main() {
+function Post() {
   const {data : session} = useSession();
-  const [loading, setLoading] = useState(false);
   
   return (
     <div>
@@ -28,8 +27,8 @@ function Main() {
             {
               session?
               <>
-                <Feed />
-                {/* <Postinput/> */}
+                {/* <Feed /> */}
+                <Postinput/>
 
               </>:
               <>
@@ -53,7 +52,7 @@ function Main() {
   )
 }
 
-export default Main;
+export default Post;
 
 
 // "col-span-4 md:col-span-2 lg:col-span-2 

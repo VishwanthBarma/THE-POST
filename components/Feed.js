@@ -6,13 +6,14 @@ import { getSession, useSession } from 'next-auth/react';
 import React, { useEffect, useState } from 'react';
 import { deepPurple } from '@material-ui/core/colors';
 import { collection, doc, getDoc, query, where, getDocs, limit, orderBy, onSnapshot } from "firebase/firestore";
-
+// import Cookies from "js-cookie";
 
 
 function Feed() {
 
   const {data: session} = useSession();
   const [posts, setPosts] = useState([]);
+  // const [userid, setuserid] = useState(null);
   // const [user, setUser] = useState([]);
 
   useEffect(() => {
@@ -23,11 +24,20 @@ function Feed() {
     )
   },[]);
 
+  // useEffect(() => {
+  //   onSnapshot(query(collection(db, "users"), where("email", "==", session.user?.email)),
+  //     (snapshot) => {
+  //       setuserid(snapshot.docs);
+  //     }
+  //   )
+  // }, [posts])
+
+  // console.log(Cookies.get("userId"));
+  // const a = userid[0].id;
+  // console.log(userid[0].id);
+
   return (
     <div>
-
-      {
-        session?
         <>
 
         <div className="border-b-2 border-slate-500">
@@ -38,30 +48,20 @@ function Feed() {
         <div>
 
           {
+            session &&
             posts.map((post) => (
                 <Post
                   key={post.id}
                   postId={post.id}
+                  userid={session.user.email}
                   post={post.data()}
                 />
               )
             )
           }
-          
-
+        
         </div>
         </>
-        :
-        <>
-            <div className='flex text-slate-800 flex-col items-center p-5 space-y-5'>
-              <h1 className='font-bold text-4xl'>Welcome to the-post</h1>
-              <p className='font-semibold text-lg p-3'>Make some fun with this web app, we think you literally enjoy it.
-              To continue,
-              <span className='italic'> Sign in for free.</span></p>
-            </div>
-        </>
-
-      }
     </div>
   )
 }

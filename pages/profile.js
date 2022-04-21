@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
-import LeftBar from './LeftBar';
-import Feed from './Feed';
-import RightBar from './RightBar';
-import Postinput from './Postinput';
+import React, { useEffect, useState } from 'react';
+import LeftBar from '../components/LeftBar';
+import Feed from '../components/Feed';
+import RightBar from '../components/RightBar';
+import Postinput from '../components/Postinput';
 import { useSession } from 'next-auth/react';
+import Profile from "../components/Profile";
+import { collection, doc, getDoc, query, where, getDocs, limit, orderBy, onSnapshot } from "firebase/firestore";
+import { db } from "../firebase";
 
-function Main() {
-  const {data : session} = useSession();
-  const [loading, setLoading] = useState(false);
-  
+
+function profile() {
+  const {data : session, status} = useSession();
+
   return (
     <div>
         <div>
@@ -28,8 +31,7 @@ function Main() {
             {
               session?
               <>
-                <Feed />
-                {/* <Postinput/> */}
+                <Profile />
 
               </>:
               <>
@@ -53,7 +55,7 @@ function Main() {
   )
 }
 
-export default Main;
+export default profile;
 
 
 // "col-span-4 md:col-span-2 lg:col-span-2 

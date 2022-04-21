@@ -21,8 +21,9 @@ function SuggPeople({dp, fullname, username}) {
                 </div>
                 </div>
 
-                <div>
-                    <p className='hover:text-blue-500 cursor-pointer ml-4 text-blue-400'>Follow</p>
+                <div className='flex flex-1 justify-end'>
+                    <button className='hover:text-blue-500 cursor-pointer ml-4 text-blue-400'>Follow</button>
+                    {/* <p className='hover:text-blue-500 cursor-pointer ml-4 text-blue-400'>Follow</p> */}
                 </div>
             </div>
     </div>

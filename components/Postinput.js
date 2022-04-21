@@ -8,10 +8,12 @@ import { db, storage } from "../firebase";
 import path from 'path';
 import { getDownloadURL, uploadString, ref } from 'firebase/storage';
 import { userInfo } from 'os';
+import { useRouter } from 'next/router';
 
 
 
 function Postinput() {
+    const router = useRouter();
     const filePickerRef = useRef();
     const [input, setInput] = useState("");
     const [selectedFile, setSelectedFile] = useState(null);
@@ -70,12 +72,15 @@ function Postinput() {
         // })
 
         await setDoc(doc(db, "users", userId, "posts", docRef.id), {
+            username: session.user.username,
         });
 
 
         setLoading(false);
         setSelectedFile(null);
         setInput("");
+        router.push("/");
+
     };
 
   return (

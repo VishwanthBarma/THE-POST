@@ -7,6 +7,7 @@ import { BsPerson } from "react-icons/bs";
 import { IoIosSearch } from "react-icons/io";
 import { db } from "../firebase";
 import { collection, query, where, getDocs, limit, orderBy, onSnapshot, addDoc } from "firebase/firestore";
+// import Cookies from "js-cookie";
 
 
 function LeftBar() {
@@ -20,28 +21,58 @@ function LeftBar() {
         </a>
       </Link>
         <div className="flex flex-col items-center md:items-start space-y-7 absolute top-40">
-          <div className="btn-div active flex cursor-pointer items-center space-x-2 font-semibold">
+          <div className="btn-div flex cursor-pointer items-center space-x-2 font-semibold">
+          <Link href="/">
+            <a  className="btn-div flex cursor-pointer items-center space-x-2 font-semibold">
             <VscHome className="btn"/>
             <h3 className="hidden md:block text-xl ">Home</h3>
+
+            </a>
+          </Link>
           </div>
+
+
           <div className="btn-div flex cursor-pointer items-center space-x-2 font-semibold">
+          <Link href="/profile">
+            <a  className="btn-div flex cursor-pointer items-center space-x-2 font-semibold">
             <BsPerson className="btn"/>
             <h3 className="hidden md:block text-xl ">Profile</h3>
+            </a>
+          </Link>
           </div>
+
+
           <div className="btn-div flex cursor-pointer items-center space-x-2 font-semibold">
+          <Link href="/post">
+            <a  className="btn-div  flex cursor-pointer items-center space-x-2 font-semibold">
             <IoAddCircleOutline className="btn"/>
             <h3 className="hidden md:block text-xl ">Post</h3>
+            </a>
+          </Link>
           </div>
+
+
+
+
           <div className="btn-div lg:hidden cursor-pointer flex items-center space-x-2 font-semibold">
+
+          <Link href="/search">
+            <a  className="btn-div  flex cursor-pointer items-center space-x-2 font-semibold">
             <IoIosSearch className="btn"/>
             <h3 className="hidden md:block text-xl ">Search</h3>
+            </a>
+          </Link>
+            
           </div>
 
           {session && 
             <>
-            <div className='md:border-2 border-black rounded-3xl flex justify-center p-1 md:px-4 hover:border-white hover:text-white hover:bg-black'>
-            <button className='hidden md:block' onClick={signOut}>LogOut</button>
-            <IoLogOutOutline onClick={signOut} className='btn md:hidden'/>
+            <div onClick={() => {
+              signOut();
+              // Cookies.remove("userId");
+            }} className='md:border-2 cursor-pointer border-black rounded-3xl flex justify-center p-1 md:px-4 hover:border-white hover:text-white hover:bg-black'>
+            <button className='hidden md:block'>LogOut</button>
+            <IoLogOutOutline className='btn md:hidden'/>
             </div>
             </>
           }

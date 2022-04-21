@@ -1,13 +1,11 @@
-import React, { useState } from 'react';
-import LeftBar from './LeftBar';
-import Feed from './Feed';
-import RightBar from './RightBar';
-import Postinput from './Postinput';
+import React from 'react';
+import LeftBar from '../components/LeftBar';
+import RightBar from '../components/RightBar';
 import { useSession } from 'next-auth/react';
+import Search from "../components/Search";
 
-function Main() {
+function search() {
   const {data : session} = useSession();
-  const [loading, setLoading] = useState(false);
   
   return (
     <div>
@@ -28,8 +26,9 @@ function Main() {
             {
               session?
               <>
-                <Feed />
+                {/* <Feed /> */}
                 {/* <Postinput/> */}
+                <Search />
 
               </>:
               <>
@@ -53,7 +52,7 @@ function Main() {
   )
 }
 
-export default Main;
+export default search;
 
 
 // "col-span-4 md:col-span-2 lg:col-span-2 

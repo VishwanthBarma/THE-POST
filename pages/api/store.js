@@ -2,7 +2,8 @@ import { getSession } from 'next-auth/react';
 import nc from 'next-connect';
 import { useRouter } from 'next/router';
 import {db} from "../../firebase";
-import { collection, addDoc, serverTimestamp, getDoc, doc, query, getDocs, where } from "firebase/firestore";
+import { collection, addDoc, serverTimestamp, getDoc, doc, query, getDocs, where, setDoc } from "firebase/firestore";
+// import Cookies from "js-cookie";
 
 
 const handler = nc();
@@ -15,7 +16,7 @@ handler.get(async (req, res) => {
     const querySnapshot = await getDocs(q);
 
     if(!querySnapshot.docs.length){
-        const docRef = await addDoc(collection(db, "users"), {
+        await setDoc(doc(db, "users", session.user.email), {
             fullname: session.user.name,
             email: session.user.email,
             username: session.user.username,
@@ -24,7 +25,9 @@ handler.get(async (req, res) => {
             time: serverTimestamp(),
         });
         console.log("User added...");
+        // Cookies.set("userId", docRef.id , { expires: 30 })
     }
+    // Cookies.set("userId", querySnapshot.docs[0].id, {expires : 30});
     res.redirect("/");
 });
 
