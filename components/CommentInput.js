@@ -20,7 +20,7 @@ function CommentInput({postId, userId}) {
   return (
     <div className=''>
         <div className=''>
-            <input onChange={(e) => setComment(e.target.value)} value={comment} type='text' placeholder='comment...' className='h-[40px] w-[350px] p-4 bg-gray-200 shadow-xl rounded-3xl'></input>
+            <input onChange={(e) => setComment(e.target.value)} value={comment} type='text' placeholder='only one comment per post...' className='h-[40px] w-[350px] p-4 bg-gray-200 shadow-xl rounded-3xl'></input>
             <button onClick={sendComment} type='button' className='text-sky-500 p-3 drop-shadow-xl hover:text-sky-400'>SEND</button>
         </div>
 

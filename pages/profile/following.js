@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import LeftBar from './LeftBar';
-import Feed from './Feed';
-import RightBar from './RightBar';
-import Postinput from './Postinput';
+import LeftBar from '../../components/LeftBar';
+import Feed from '../../components/Feed';
+import RightBar from '../../components/RightBar';
+import Postinput from '../../components/Postinput';
+import Following from "../../components/Following";
 import { useSession } from 'next-auth/react';
 
 function Main() {
@@ -28,8 +29,7 @@ function Main() {
             {
               session?
               <>
-                <Feed />
-                {/* <Postinput/> */}
+                <Following />
 
               </>:
               <>

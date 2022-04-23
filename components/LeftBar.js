@@ -95,9 +95,12 @@ function LeftBar() {
           (
           <>
           <div>
-          <Link href="auth/signin">
+          <Link href="/auth/signin" passHref>
                 <a>
-                <button type="button" className="px-8 text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-3xl text-md px-5 py-2.5 text-center mr-2 mb-2">Sign In</button>
+                <div className='cursor-pointer bg-neutral-800 px-5 rounded-3xl shadow-lg shadow-orange-300 hover:translate-y-[-3px]'>
+                  <button className='text-orange-100 font-semibold p-3' type="button">Sign In</button>
+                </div>
+                {/* <button type="button" className=" text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-3xl text-md px-5 py-2.5 text-center mr-2 mb-2">Sign In</button> */}
                 </a>
           </Link>
           </div>

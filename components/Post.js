@@ -7,12 +7,12 @@ import { useSession } from 'next-auth/react';
 import Moment from 'react-moment';
 import { ContactlessOutlined, PostAddSharp } from '@material-ui/icons';
 import { AiOutlineHeart, AiFillHeart, AiOutlineDelete } from "react-icons/ai";
-import { BsBookmarkCheck, BsBookmarkCheckFill } from "react-icons/bs";
-import { MdDeleteOutline, MdDelete } from "react-icons/md";
-import { GoCommentDiscussion } from "react-icons/go";
+
 import Comment from "../components/Comment";
 import CommentInput from "../components/CommentInput";
 import { FaRegCommentAlt, FaCommentAlt } from "react-icons/fa";
+
+import { RiBookmarkLine, RiBookmarkFill } from "react-icons/ri";
 
 
 function Post({post, postId, userid}) {
@@ -119,12 +119,19 @@ function Post({post, postId, userid}) {
 
     const deletePost = async() => {
         // // unsaving
-        // await deleteDoc(doc(db, "posts", postId, "saves", session.user.uid));
-        // await deleteDoc(doc(db, "users", userid, "savedposts", postId));
+        if(hasSaved){
+
+            await deleteDoc(doc(db, "posts", postId, "saves", session.user.uid));
+            await deleteDoc(doc(db, "users", userid, "savedposts", postId));
+        }
 
         // // unliking
-        // await deleteDoc(doc(db, "posts", postId, "likes", session.user.uid));
-        // await deleteDoc(doc(db, "users", userid, "likedposts", postId));
+
+        if(hasLiked){
+
+            await deleteDoc(doc(db, "posts", postId, "likes", session.user.uid));
+            await deleteDoc(doc(db, "users", userid, "likedposts", postId));
+        }
 
         // deleting doc
         await deleteDoc(doc(db, "users", userid, "posts", postId));
@@ -173,44 +180,6 @@ function Post({post, postId, userid}) {
         }
     };
 
-    // const handleLiked = async (e) => {
-    //     e.stopPropagation();
-    //     const q = await query(collection(db, "users"), where("email", "==", session.user.email));
-    //     const querySnapshot = await getDocs(q);
-    //     const userdocRef = doc(db, "users", querySnapshot.docs[0].id);
-        
-    //     const docSnap = querySnapshot.docs[0].data();
-
-    //     console.log(docSnap)
-
-    //     const postdocRef = doc(db, "posts", postId);
-
-    //     if(docSnap.likedPosts.includes(postdocRef.id)){
-
-    //         await updateDoc(userdocRef, {
-    //             likedPosts: arrayRemove(postdocRef.id),
-    //         })
-    //         await updateDoc(postdocRef, {
-    //             meta: {
-    //                 likes: increment(-1),
-    //             }
-    //         })
-    //     }else{
-
-    //         await updateDoc(userdocRef, {
-    //             likedPosts: arrayUnion(postdocRef.id),
-    //         })
-    
-    //         await updateDoc(postdocRef, {
-    //             meta: {
-    //                 likes: increment(1),
-    //             }
-    //         })
-    //     }
-    // }
-
-    // console.log(comments)
-    // console.log(comments.length);
 
   return (
     <div className="p-4 md:p-7 border-b-[1px] border-slate-100 shadow-md">
@@ -274,7 +243,7 @@ function Post({post, postId, userid}) {
                 <>
 
                 <div onClick={savePost} className='cursor-pointer flex items-center space-x-1 left-16 bottom-[-4px] hover:text-blue-400 text-blue-500'>
-                    <BsBookmarkCheckFill className='h-5 w-5 hover:drop-shadow-lg'/>
+                    <RiBookmarkFill className='h-6 w-6 hover:drop-shadow-lg'/>
                     {
                         saves.length > 0 &&
                         <h2 className='hover:drop-shadow-lg'>{saves.length}</h2>
@@ -283,7 +252,7 @@ function Post({post, postId, userid}) {
                 </>:
                 <>
                 <div onClick={savePost} className='cursor-pointer flex items-center space-x-1 left-16 bottom-[-4px] hover:text-blue-400'>
-                    <BsBookmarkCheck className='h-5 w-5 hover:drop-shadow-lg'/>
+                    <RiBookmarkLine className='opacity-75 h-6 w-6 hover:drop-shadow-lg'/>
                     {
                         saves.length > 0 &&
                         <h2 className='hover:drop-shadow-lg'>{saves.length}</h2>

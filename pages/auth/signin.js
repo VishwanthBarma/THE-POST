@@ -5,34 +5,6 @@ import { collection, addDoc, serverTimestamp, getDoc, doc, query, getDocs, where
 import { db } from "../../firebase";
 
 function Signin({providers}) {
-  // const {data} = useSession();
-  // const [session, setSession] = useState({});
-  
-  // async function updateUser(){
-  //   console.log("Entered the function...")
-  //   console.log(session);
-  //   if(session){
-  //     console.log("Here...called.")
-  //     const q = query(collection(db, "users"), where("email", "==", session.user.email));
-  //     const querySnapshot = await getDocs(q);
-  //     if(!querySnapshot.empty){
-  //       console.log("User registered already.");
-  //       console.log(querySnapshot);
-  //     }else{
-  //       console.log("User Not Registered");
-  //       const docRef = await addDoc(collection(db, "users"), {
-  //         fullname: session.user.name,
-  //         email: session.user.email,
-  //         username: session.user.username,
-  //         uniqueid: session.user.uid,
-  //         dp: session.user.image,
-  //         time: serverTimestamp(),
-  //       });
-  //       console.log("Document written with ID: ", docRef.id);
-  //     }
-  //   }
-  // }
-
   return (
     <>
       {Object.values(providers).map((provider) => (
@@ -50,12 +22,10 @@ function Signin({providers}) {
                     <h1 className='text-[8rem] font-bold absolute top-[7rem] text-transparent bg-clip-text bg-gradient-to-br from-orange-400 to-pink-500'>POST</h1>
                 </div>
 
-                <div className='flex flex-col items-center bg-slate-200 hover:bg-green-400 hover:text-white p-3 rounded-3xl'>
-                    <button className='flex items-center font-semibold text-lg' onClick={() => {
+                <div onClick={() => {
                       signIn(provider.id, {callbackUrl: "/api/store"});
-                      // setSession(data);
-                      // updateUser();
-                    }}>
+                    }} className='cursor-pointer flex flex-col items-center bg-neutral-800  p-3 rounded-3xl shadow-lg shadow-orange-200 hover:translate-y-[-3px]'>
+                    <button className='flex items-center font-semibold text-lg text-orange-100'>
                         <FaGoogle className='mr-3'/>
                         Sign in with {provider.name}
                     </button>

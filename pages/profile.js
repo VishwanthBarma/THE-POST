@@ -47,7 +47,16 @@ function profile() {
         </div>
         {/* right part */}
         <div className='hidden lg:block max-h-screen sticky'>
+        {
+          session ?
+          <>
           <RightBar />
+
+          </>:
+          <>
+            Sign In
+          </>
+        }
         </div>
       </div> 
     </div>

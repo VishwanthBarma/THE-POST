@@ -7,6 +7,7 @@ import { useRouter } from 'next/router';
 import component from '../asset/Component.png'
 import Image from 'next/image';
 import Post from "../components/Post";
+import Link from 'next/link';
 
 
 function Profile() {
@@ -71,37 +72,6 @@ function Profile() {
 
 
 
-    // if(!session){
-    //     return;
-    // }else{
-    //     useEffect(() => {
-    //         onSnapshot(query(collection(db, "users"), where("email", "==", session.user?.email)),
-    //           (snapshot) => {
-    //             setuserid(snapshot.docs);
-    //             // setuserid(userid[0].id)
-    //           }
-    //         )
-    //     }, []);
-    //     console.log(userid[0].id);
-    // }
-
-
-
-
-    // useEffect(() => 
-    //     onSnapshot(collection(db, "users", userid, "posts"), (snapshot) => {
-    //         setPosts(snapshot.docs);
-    //     }),
-
-    //     [db, postId]
-    // );
-
-
-
-
-    // useEffect(() => {
-
-    // })
 
   return (
     <div className='flex flex-col space-y-8'>
@@ -121,26 +91,36 @@ function Profile() {
         </div>
         
         <div className='flex justify-center space-x-5'>
-            <div className='flex space-x-2'>
-                <h1>Followers</h1>
+        <Link href="/profile/followers">
+            <a>
+
+            <div className='cursor-pointer flex space-x-2 bg-gray-800 rounded-3xl p-2 px-3 text-md shadow-md hover:shadow-xl hover:translate-y-[-3px] hover:bg-slate-700 active:bg-black'>
+                <h1 className='font-semibold text-white'>Followers</h1>
                 <h1 className='text-green-500 font-semibold'>{followers.length}</h1>
             </div>
-            <div className='flex space-x-2'>
-                <h1>Following</h1>
+            </a>
+        </Link>
+
+        <Link href="/profile/following">
+            <a>
+            <div className='cursor-pointer flex space-x-2 bg-gray-800 rounded-3xl p-2 px-3 text-md shadow-md hover:shadow-xl hover:translate-y-[-3px] hover:bg-slate-700 active:bg-black'>
+                <h1 className='font-semibold text-white'>Following</h1>
                 <h1 className='text-green-500 font-semibold'>{following.length}</h1>
             </div>
-            <div className='flex space-x-2'>
-                <h1>Posts</h1>
-                <h1 className='text-green-500 font-semibold'>{userPosts.length}</h1>
-            </div>
+            </a>
+        </Link>
         </div>
         <hr></hr>
         <div className='flex space-x-8 items-center justify-center'>
-            <button className='bg-slate-200 rounded-3xl px-3 py-1 font-semibold hover:shadow-lg hover:bg-slate-900 hover:text-white active:text-slate-400'>Saved Posts<span className='text-green-500 font-semibold ml-2'>{savedposts.length}</span></button>
-            <button className='bg-slate-200 rounded-3xl px-3 py-1 font-semibold hover:shadow-lg hover:bg-slate-900 hover:text-white active:text-slate-400'>Liked Posts<span className='text-green-500 font-semibold ml-2'>{likedposts.length}</span></button>
+            <button className='bg-slate-200 rounded-3xl px-3 py-1.5 font-semibold hover:shadow-lg hover:bg-slate-700 hover:text-white active:text-slate-400'>Saved Posts<span className='text-green-500 font-semibold ml-2'>{savedposts.length}</span></button>
+            <button className='bg-slate-200 rounded-3xl px-3 py-1.5 font-semibold hover:shadow-lg hover:bg-slate-700 hover:text-white active:text-slate-400'>Liked Posts<span className='text-green-500 font-semibold ml-2'>{likedposts.length}</span></button>
         </div>
         <hr></hr>
         <div>
+        <div className='flex space-x-3 px-7'>
+                <h1 className='text-lg font-bold'>POSTS</h1>
+                <h1 className='text-green-500 font-bold text-lg'>{userPosts.length}</h1>
+            </div>
             {
                 session &&
                 posts.map((post) => {

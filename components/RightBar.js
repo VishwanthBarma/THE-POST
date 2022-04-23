@@ -11,6 +11,14 @@ import { PermPhoneMsg } from '@material-ui/icons';
 function RightBar() {
   const {data: session} = useSession();
   const [people, setPeople] = useState([]);
+  const [following, setFollowing] = useState([]);
+
+  useEffect(() => 
+    onSnapshot(collection(db, "users", session?.user?.email, "following"), (snapshot) => {
+      setFollowing(snapshot.docs);
+    }), [db]
+  );
+
 
   useEffect(() => 
       onSnapshot(query(collection(db, "users")),
@@ -20,19 +28,6 @@ function RightBar() {
         }
       )
   ,[db]);
-
-  // useEffect(() => {
-  //   console.log("I am entered...");
-  //   async function getTheData(){
-  //     const querySnapshot = await getDocs(collection(db, "users"));
-
-  //     querySnapshot.forEach((doc) => {
-  //       setPeople((prevData) => [...prevData, doc.data()])
-  //       console.log("Reached..");
-  //     })
-  //   }
-  //   getTheData()
-  // }, [])
 
 
   return (
@@ -53,17 +48,20 @@ function RightBar() {
         </div>
 
         <div className="flex flex-col space-y-6">
-        {
-          people.slice(0,5).map((person) => {
-            person = person.data();
-            return(
-            <SuggPeople
-              dp={person.dp}
-              fullname={person.fullname}
-              username={person.username}
-            />
-            )
+        {session?
+          people.slice(0,5).map((user) => {
+            if(following.findIndex((person) => (person.data().email === user.data().email)) === -1){
+              return(
+              <SuggPeople
+                user={user.data()}
+              />
+              )
+            }
           })
+          :
+          <>
+            
+          </>
         }
 
         </div>
