@@ -30,12 +30,6 @@ function Post({post, postId, userid}) {
 
     const {data: session} = useSession();
 
-    // const q = await query(collection(db, "users"), where("email", "==", session.user.email));
-    // const querySnapshot = await getDocs(q);
-    // const userId = querySnapshot.docs[0].id;
-
-    // console.log(userId);
-    // console.log(posts);
 
     useEffect(() => 
         onSnapshot(collection(db, "posts", postId, "likes"), (snapshot) => {
@@ -65,35 +59,6 @@ function Post({post, postId, userid}) {
         }),
     [db, postId]);
 
-    // useEffect(
-    //     () =>
-    //       onSnapshot(
-    //         query(
-    //           collection(db, "posts", postId, "comments"),
-    //           orderBy("timestamp", "description")
-    //         ),
-    //         (snapshot) => setComments(snapshot.docs)
-    //       ),
-    //     [db, postId]
-    //   );
-
-    // useEffect(() => 
-    //     onSnapshot(query(collection(db, "posts", postId, "comments"),orderBy("timestamp")), (snapshot) => {
-    //         setComments(snapshot.docs);
-    //         console.log("we are here legggth", comments.length)
-    //     }),
-
-    // [db, postId]);
-
-    // useEffect(() => {
-    //     () => {
-
-    //         onSnapshot(collection(db, "users", userId, "posts"), (snapshot) => {
-    //             setPosts(snapshot.docs);
-    //         }),
-    //     }},
-    //     [db, postId]
-    // );
 
 
     useEffect(() => {

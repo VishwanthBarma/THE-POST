@@ -112,8 +112,16 @@ function Profile() {
         </div>
         <hr></hr>
         <div className='flex space-x-8 items-center justify-center'>
-            <button className='bg-slate-200 rounded-3xl px-3 py-1.5 font-semibold hover:shadow-lg hover:bg-slate-700 hover:text-white active:text-slate-400'>Saved Posts<span className='text-green-500 font-semibold ml-2'>{savedposts.length}</span></button>
-            <button className='bg-slate-200 rounded-3xl px-3 py-1.5 font-semibold hover:shadow-lg hover:bg-slate-700 hover:text-white active:text-slate-400'>Liked Posts<span className='text-green-500 font-semibold ml-2'>{likedposts.length}</span></button>
+        <Link href="/profile/savedposts" passHref>
+            <a>
+                <button className='bg-slate-200 rounded-3xl px-3 py-1.5 font-semibold hover:shadow-lg hover:bg-slate-700 hover:text-white active:text-slate-400'>Saved Posts<span className='text-green-500 font-semibold ml-2'>{savedposts.length}</span></button>
+            </a>
+        </Link>
+        <Link href="/profile/likedposts" passHref>
+            <a>
+                <button className='bg-slate-200 rounded-3xl px-3 py-1.5 font-semibold hover:shadow-lg hover:bg-slate-700 hover:text-white active:text-slate-400'>Liked Posts<span className='text-green-500 font-semibold ml-2'>{likedposts.length}</span></button>
+            </a>
+        </Link>
         </div>
         <hr></hr>
         <div>

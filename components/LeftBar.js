@@ -7,11 +7,13 @@ import { BsPerson } from "react-icons/bs";
 import { IoIosSearch } from "react-icons/io";
 import { db } from "../firebase";
 import { collection, query, where, getDocs, limit, orderBy, onSnapshot, addDoc } from "firebase/firestore";
+import { useRouter } from 'next/router';
 // import Cookies from "js-cookie";
 
 
 function LeftBar() {
   const {data: session} = useSession();
+  const router = useRouter();
 
   return (
     <div className="flex flex-col justify-between items-center space-y-10 h-screen relative py-8">
@@ -69,6 +71,7 @@ function LeftBar() {
             <>
             <div onClick={() => {
               signOut();
+              router.push("/");
               // Cookies.remove("userId");
             }} className='md:border-2 cursor-pointer border-black rounded-3xl flex justify-center p-1 md:px-4 hover:border-white hover:text-white hover:bg-black'>
             <button className='hidden md:block'>LogOut</button>
