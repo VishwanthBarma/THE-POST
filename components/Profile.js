@@ -84,8 +84,8 @@ function Profile() {
         </div>
         <div className='flex flex-col space-y-3 items-center justify-center'>
 
-            <img className='h-[140px] w-[140px] rounded-full' src={session.user.image}></img>
-            <h1 className='font-bold text-3xl'>{session.user.name}</h1>
+            <img className='h-[140px] w-[140px] rounded-full border-[3px] border-sky-500 p-1 shadow-xl shadow-sky-200' src={session.user.image}></img>
+            <h1 className='font-bold text-3xl drop-shadow-lg'>{session.user.name}</h1>
             <h1 className='font-semibold text-lg text-slate-600'>@{session.user.username}</h1>
 
         </div>
@@ -126,9 +126,11 @@ function Profile() {
         <hr></hr>
         <div>
         <div className='flex space-x-3 px-7'>
-                <h1 className='text-lg font-bold'>POSTS</h1>
+                <h1 className='text-lg font-bold mb-2'>POSTS</h1>
                 <h1 className='text-green-500 font-bold text-lg'>{userPosts.length}</h1>
             </div>
+            <div className='mb-8'>
+
             {
                 session &&
                 posts.map((post) => {
@@ -147,6 +149,7 @@ function Profile() {
                 }
                 )
             }
+            </div>
 
 
         </div>

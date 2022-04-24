@@ -32,7 +32,7 @@ function Followers() {
                 <FeedHead name="FOLLOWERS"/>
                 </div>
 
-                <div>
+                <div className='py-2'>
                     { session &&
                         followers.map((person) => {
                             return (

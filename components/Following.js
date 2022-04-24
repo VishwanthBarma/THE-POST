@@ -19,9 +19,6 @@ function Following() {
     },[db]);
 
 
-
-
-
   return (
     <div>
         {

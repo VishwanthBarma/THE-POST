@@ -36,11 +36,15 @@ function RightBar() {
     {
       session ? 
       <>
-      <div className="p-4 bg-slate-100 rounded-xl px-9 shadow-sm">
-            <div className="cursor-pointer flex items-center space-x-2 relative mr-36">
+      <div className="p-4 bg-slate-100 rounded-xl px-4 shadow-sm">
+        <h1>
+          No login password credentials are stored in our database, they are completely authorized
+          and authenticated by Google Services.
+        </h1>
+            {/* <div className="cursor-pointer flex items-center space-x-2 relative mr-36">
                 <IoSearch className="shrink-0 h-6 w-6"/>
                 <input className="cursor-pointer absolute bg-transparent text-black placeholder-gray-700 pl-6 outline-none" type="text" placeholder="search for people"></input>
-            </div>
+            </div> */}
         </div>
 
         <div>

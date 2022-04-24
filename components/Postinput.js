@@ -90,7 +90,7 @@ function Postinput() {
             <FeedHead name="ADD POST"/>
         </div>
         <div className='shadow-lg rounded-xl'>
-            <textarea onChange={(e) => setInput(e.target.value)} maxLength="280" value={input} name='description' className='rounded-xl resize-none h-[13rem] w-[23rem] md:w-[30rem] p-2 text-lg' rows="5" placeholder='What you want to share?'></textarea>
+            <textarea onChange={(e) => setInput(e.target.value)} maxLength="280" value={input} name='description' className='rounded-xl resize-none h-[13rem] w-[18rem] md:w-[30rem] p-2 text-lg' rows="5" placeholder='What you want to share?'></textarea>
         </div>
 
         {selectedFile && 

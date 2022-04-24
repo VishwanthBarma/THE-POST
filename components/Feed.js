@@ -45,8 +45,7 @@ function Feed() {
         </div>
 
         {/* Posts */}
-        <div>
-
+        <div className='mb-8'>
           {
             session &&
             posts.map((post) => (

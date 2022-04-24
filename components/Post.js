@@ -13,6 +13,7 @@ import CommentInput from "../components/CommentInput";
 import { FaRegCommentAlt, FaCommentAlt } from "react-icons/fa";
 
 import { RiBookmarkLine, RiBookmarkFill } from "react-icons/ri";
+import Link from 'next/link';
 
 
 function Post({post, postId, userid}) {
@@ -149,20 +150,27 @@ function Post({post, postId, userid}) {
   return (
     <div className="p-4 md:p-7 border-b-[1px] border-slate-100 shadow-md">
         {/* post header */}
-        <div>
-            <div className="cursor-pointer flex space-x-2 items-center">
-            <div className=''>
-                <img className="h-12 w-12 rounded-full object-cover" src={post.dp}></img>
-            </div>
-            <div className="">
-                <h6 className="text-sm font-bold">{post.fullname} <span className="hidden md:inline font-light">@{post.username}</span></h6>
-                <div className='text-slate-500 text-sm'>
-                    <Moment fromNow>{post.timestamp.toDate()}</Moment>
+        <Link href={{
+            pathname: '/profile/[email]',
+            query: {email: userid},
+        }}>
+            <a>
+                <div>
+                    <div className="cursor-pointer flex space-x-2 items-center">
+                    <div className=''>
+                        <img className="h-12 w-12 rounded-full object-cover" src={post.dp}></img>
+                    </div>
+                    <div className="">
+                        <h6 className="text-sm font-bold">{post.fullname} <span className="hidden md:inline font-light">@{post.username}</span></h6>
+                        <div className='text-slate-500 text-sm'>
+                            <Moment fromNow>{post.timestamp.toDate()}</Moment>
+                        </div>
+                        {/* <p className="text-gray-500 text-sm">05 April 2022</p> */}
+                    </div>
+                    </div>
                 </div>
-                {/* <p className="text-gray-500 text-sm">05 April 2022</p> */}
-            </div>
-            </div>
-        </div>
+            </a>
+        </Link>
         {/* post description */}
 
         <div className="px-[5px] md:px-[60px] mt-2">
@@ -172,7 +180,7 @@ function Post({post, postId, userid}) {
         {/* post photo */}
 
         <div className='md:max-h-[30rem] max-h-[20rem] max-w-[22rem] md:max-w-[30rem] md:mx-[60px] my-6'>
-                <img className='md:max-h-[30rem] max-h-[20rem] max-w-[22rem] object-cover rounded-3xl' src={post.photo}></img>
+                <img className='md:max-h-[30rem] max-h-[16rem] max-w-[18rem] object-cover rounded-3xl' src={post.photo}></img>
         </div>
 
         {/* post likes and comments */}

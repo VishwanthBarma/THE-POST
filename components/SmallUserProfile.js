@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { HiUserAdd } from 'react-icons/hi';
 import { db } from '../firebase';
 import { AiOutlineDelete, AiFillDelete } from "react-icons/ai";
+import Link from 'next/link';
 
 function SmallUserProfile({id, infollowing, infollowers, user}) {
     const {data: session} = useSession();
@@ -39,11 +40,20 @@ function SmallUserProfile({id, infollowing, infollowers, user}) {
         setLoading(true);
         const q = query(collection(db, "users", userData.email, "following"), where("email", "==", session.user.email));
         const querySnapshot = await getDocs(q);
+
+        console.log(ruerySnapshot.docs[0].id);
+        
         if(!hasNotfollowing){
+
             const p = query(collection(db, "users", session.user.email, "following"), where("email", "==", userData.email));
             const puerySnapshot = await getDocs(p);
+
+            const r = query(collection(db, "users", userData.email, "followers"), where("email", "==", session.user.email));
+            const ruerySnapshot = await getDocs(r);
+
             setStart(false);
             await deleteDoc(doc(db, "users", session.user.email, "following", puerySnapshot.docs[0].id));
+            await deleteDoc(doc(db, "users", userData.email, "followers", ruerySnapshot.docs[0].id));
         }
         await deleteDoc(doc(db, "users", userData.email, "following", querySnapshot.docs[0].id))
         await deleteDoc(doc(db, "users", session.user.email, "followers", id));
@@ -79,16 +89,23 @@ function SmallUserProfile({id, infollowing, infollowers, user}) {
 
 
   return (
-    <div className='px-4 py-3'>
+    <div className='md:px-5 px-2 lg:px-7 py-2'>
     {
         session && userData?
     <>
-        <div className='flex space-x-4 p-3 px-5 md:px-14 justify-between bg-gray-900 rounded-3xl text-white shadow-2xl hover:translate-y-[-3px] hover:shadow-inner'>
-            <img className='rounded-full cursor-pointer w-8 h-8 md:h-12 md:w-12 border-2 border-white' src={userData.dp}></img>
-            <div className='cursor-pointer flex flex-col flex-1'>
-                <h1 className='font-bold text-[12px] md:text-lg'>{userData.fullname}</h1>
-                <h1 className='text-slate-400 text-[12px] md:text-md'>@{userData.username}</h1>
-            </div>
+        <div className='flex space-x-4 py-3 px-4 md:px-9 justify-between bg-gray-900 rounded-3xl text-white shadow-2xl hover:translate-y-[-3px] hover:shadow-inner'>
+            <Link href={{
+                pathname: '/profile/[email]',
+                query: {email: user},
+            }} passHref>
+                <a className='flex flex-1'>
+                    <img className='rounded-full w-8 h-8 md:h-12 md:w-12 border-2 border-white' src={userData.dp}></img>
+                    <div className='cursor-pointer flex flex-col flex-1 ml-2'>
+                        <h1 className='font-bold text-[12px] md:text-lg'>{userData.fullname}</h1>
+                        <h1 className='text-slate-400 text-[12px] md:text-md'>@{userData.username}</h1>
+                    </div>
+                </a>
+            </Link>
 
             {
                 infollowers && 
@@ -105,13 +122,13 @@ function SmallUserProfile({id, infollowing, infollowers, user}) {
             }
             {
                 infollowing &&
-                <h1 onClick={unfollowFollowing} className='flex cursor-pointer text-[12px] md:test-md items-center font-semibold text-sky-500 md:hover:scale-125 hover:scale-110'>Unfollow</h1>
+                <h1 onClick={unfollowFollowing} className='flex cursor-pointer text-[12px] md:text-[16px] items-center font-semibold text-sky-500 md:hover:scale-125 hover:scale-110'>Unfollow</h1>
             }
 
             {
                 infollowers && hasNotfollowing && start?
                 <>
-                <h1 onClick={followFollowers} className='flex cursor-pointer text-[12px] md:test-md items-center font-semibold text-sky-500 md:hover:scale-125 hover:scale-110'>Follow</h1>
+                <h1 onClick={followFollowers} className='flex cursor-pointer text-[12px] md:text-[16px] items-center font-semibold text-sky-500 md:hover:scale-125 hover:scale-110'>Follow</h1>
 
                 </>
                 

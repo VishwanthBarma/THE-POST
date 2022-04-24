@@ -56,7 +56,7 @@ function LeftBar() {
 
 
 
-          <div className="btn-div lg:hidden cursor-pointer flex items-center space-x-2 font-semibold">
+          <div className="btn-div cursor-pointer flex items-center space-x-2 font-semibold">
 
           <Link href="/search">
             <a  className="btn-div  flex cursor-pointer items-center space-x-2 font-semibold">

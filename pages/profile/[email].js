@@ -1,12 +1,20 @@
-import React from 'react';
-import LeftBar from '../components/LeftBar';
-import RightBar from '../components/RightBar';
+import React, { useEffect, useState } from 'react';
+import LeftBar from '../../components/LeftBar';
+import Feed from '../../components/Feed';
+import RightBar from '../../components/RightBar';
+import Postinput from '../../components/Postinput';
 import { useSession } from 'next-auth/react';
-import Search from "../components/Search";
+import Profile from "../../components/Profile";
+import { collection, doc, getDoc, query, where, getDocs, limit, orderBy, onSnapshot } from "firebase/firestore";
+import UserProfile from "../../components/UserProfile"
+import { useRouter } from 'next/router';
 
-function search() {
-  const {data : session} = useSession();
-  
+
+function profile() {
+  const {data : session, status} = useSession();
+  const router = useRouter();
+  const { email } = router.query;
+
   return (
     <div>
         <div>
@@ -26,9 +34,7 @@ function search() {
             {
               session?
               <>
-                {/* <Feed /> */}
-                {/* <Postinput/> */}
-                <Search />
+                <UserProfile user={email}/>
 
               </>:
               <>
@@ -45,13 +51,14 @@ function search() {
         {/* right part */}
         <div className='hidden lg:block max-h-screen sticky'>
         {
-          session?
+          session ?
+          <>
           <RightBar />
-          :
+
+          </>:
           <>
             Sign In
           </>
-
         }
         </div>
       </div> 
@@ -60,7 +67,7 @@ function search() {
   )
 }
 
-export default search;
+export default profile;
 
 
 // "col-span-4 md:col-span-2 lg:col-span-2 
