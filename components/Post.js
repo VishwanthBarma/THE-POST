@@ -31,6 +31,16 @@ function Post({post, postId, userid}) {
 
     const {data: session} = useSession();
 
+    function numFormatter(num) {
+        if(num > 999 && num < 1000000){
+            return (num/1000).toFixed(0) + 'K';
+        }else if(num > 1000000){
+            return (num/1000000).toFixed(0) + 'M'; 
+        }else if(num < 900){
+            return num; 
+        }
+    }
+
 
     useEffect(() => 
         onSnapshot(collection(db, "posts", postId, "likes"), (snapshot) => {
@@ -150,8 +160,13 @@ function Post({post, postId, userid}) {
   return (
     <div className="p-4 md:p-7 border-b-[1px] border-slate-100 shadow-md">
         {/* post header */}
+        {
+            session && 
+            <>
+
+            
         <Link href={{
-            pathname: '/profile/[email]',
+            pathname: (post.email == session.user.email)? '/profile' : '/profile/[email]',
             query: {email: userid},
         }}>
             <a>
@@ -186,25 +201,25 @@ function Post({post, postId, userid}) {
         {/* post likes and comments */}
 
         <div className='px-[5px] md:px-[60px]'>
-            <div className='flex item-center justify-start space-x-14 mb-4'>
+            <div className='flex item-center justify-start sm:space-x-14 space-x-10 mb-4'>
             {
                 hasLiked?
                 <>
                 <div onClick={likePost} className='cursor-pointer flex item-center space-x-2  hover:text-red-400 text-red-500'>
-                    <AiFillHeart className='h-6 w-6 hover:drop-shadow-lg'/>
+                    <AiFillHeart className='sm:h-6 sm:w-6 h-5 w-5  hover:drop-shadow-lg'/>
                     {
                         likes.length > 0 &&
-                        <h2 className='hover:drop-shadow-lg'>{likes.length}</h2>
+                        <h2 className='hover:drop-shadow-lg sm:text-md text-[14px]'>{numFormatter(likes.length)}</h2>
                     }
                 </div>
 
                 </>:
                 <>
                 <div onClick={likePost} className='cursor-pointer flex item-center space-x-2  hover:text-red-400 '>
-                    <AiOutlineHeart className='h-6 w-6 hover:drop-shadow-lg'/>
+                    <AiOutlineHeart className='sm:h-6 sm:w-6 w-5 h-5 hover:drop-shadow-lg'/>
                     {
                         likes.length > 0 &&
-                        <h2 className='hover:drop-shadow-lg'>{likes.length}</h2>
+                        <h2 className='hover:drop-shadow-lg sm:text-md text-[14px]'>{numFormatter(likes.length)}</h2>
                     }
                 </div>
 
@@ -216,19 +231,19 @@ function Post({post, postId, userid}) {
                 <>
 
                 <div onClick={savePost} className='cursor-pointer flex items-center space-x-1 left-16 bottom-[-4px] hover:text-blue-400 text-blue-500'>
-                    <RiBookmarkFill className='h-6 w-6 hover:drop-shadow-lg'/>
+                    <RiBookmarkFill className='sm:h-6 sm:w-6 h-5 w-5 hover:drop-shadow-lg'/>
                     {
                         saves.length > 0 &&
-                        <h2 className='hover:drop-shadow-lg'>{saves.length}</h2>
+                        <h2 className='hover:drop-shadow-lg sm:text-md text-[14px]'>{numFormatter(saves.length)}</h2>
                     }
                 </div>
                 </>:
                 <>
                 <div onClick={savePost} className='cursor-pointer flex items-center space-x-1 left-16 bottom-[-4px] hover:text-blue-400'>
-                    <RiBookmarkLine className='opacity-75 h-6 w-6 hover:drop-shadow-lg'/>
+                    <RiBookmarkLine className='opacity-75 sm:h-6 sm:w-6 w-5 h-5 hover:drop-shadow-lg'/>
                     {
                         saves.length > 0 &&
-                        <h2 className='hover:drop-shadow-lg'>{saves.length}</h2>
+                        <h2 className='hover:drop-shadow-lg sm:text-md text-[14px]'>{numFormatter(saves.length)}</h2>
                     }
                 </div>
 
@@ -240,7 +255,7 @@ function Post({post, postId, userid}) {
                 isUserPost?
                 <>
                 <div onClick={deletePost} className='cursor-pointer flex items-center space-x-1 left-16 bottom-[-4px] hover:text-orange-400 active:text-red-600 '>
-                    <AiOutlineDelete className='h-6 w-6 hover:drop-shadow-lg'/>
+                    <AiOutlineDelete className='sm:h-6 sm:w-6 w-5 h-5 hover:drop-shadow-lg'/>
                 </div>
 
                 </>:
@@ -256,10 +271,10 @@ function Post({post, postId, userid}) {
                 <>
                 <div className='flex items-center justify-center space-x-2'>
 
-                <FaRegCommentAlt  onClick={postComment} className='h-5 w-5 font-thin hover:drop-shadow-lg hover:text-green-400'/>
+                <FaRegCommentAlt  onClick={postComment} className='sm:h-5 sm:w-5 w-4 h-4 font-thin hover:drop-shadow-lg hover:text-green-400'/>
                 {
                     comments.length > 0 &&
-                    <h2 className='hover:drop-shadow-lg'>{comments.length}</h2>
+                    <h2 className='hover:drop-shadow-lg sm:text-md text-[14px]'>{numFormatter(comments.length)}</h2>
                 }
                 </div>
                 </>
@@ -270,10 +285,10 @@ function Post({post, postId, userid}) {
 
                 <div className='flex items-center justify-center space-x-2'>
 
-                <FaCommentAlt  onClick={postComment} className='flex h-5 font-thin w-5 hover:drop-shadow-lg hover:text-green-400 text-green-500'/>
+                <FaCommentAlt  onClick={postComment} className='flex sm:h-5 sm:w-5 w-4 h-4 font-thin hover:drop-shadow-lg hover:text-green-400 text-green-500'/>
                 {
                     comments.length > 0 &&
-                    <h2 className='hover:drop-shadow-lg'>{comments.length}</h2>
+                    <h2 className='hover:drop-shadow-lg sm:text-md text-[14px]'>{numFormatter(comments.length)}</h2>
                 }
                 </div>
 
@@ -313,8 +328,10 @@ function Post({post, postId, userid}) {
             }
 
         </div>
+        </>
+        }
     </div>
   )
 }
 
-export default Post
+export default Post;

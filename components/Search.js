@@ -29,9 +29,10 @@ function Search() {
         <div className='py-8'>
 
         {input && session && 
-          users.filter(((user) => user.data().username.includes(input.toLowerCase())))
+          users.filter((user) => user.data().username.includes(input.toLowerCase()))
             .map((user) => ((user.data().email !== session.user.email) && <SearchProfile userData={user.data()} />))
         }
+        
         </div>
 
       </div>

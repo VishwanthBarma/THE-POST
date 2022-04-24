@@ -72,7 +72,6 @@ function LeftBar() {
             <div onClick={() => {
               signOut();
               router.push("/");
-              // Cookies.remove("userId");
             }} className='md:border-2 cursor-pointer border-black rounded-3xl flex justify-center p-1 md:px-4 hover:border-white hover:text-white hover:bg-black'>
             <button className='hidden md:block'>LogOut</button>
             <IoLogOutOutline className='btn md:hidden'/>
@@ -84,6 +83,9 @@ function LeftBar() {
         {
           session?
           (<>
+          <Link href="/profile">
+            <a>
+
             <div className="cursor-pointer flex space-x-2 items-center">
             <div>
               <img className="h-12 rounded-full" src={session.user.image}></img>
@@ -93,11 +95,13 @@ function LeftBar() {
               <p className="text-gray-500 text-sm">@{session.user.username}</p>
             </div>
           </div>
+            </a>
+          </Link>
           </>)
           :
           (
           <>
-          <div>
+          <div className='hidden'>
           <Link href="/auth/signin" passHref>
                 <a>
                 <div className='cursor-pointer bg-neutral-800 px-5 rounded-3xl shadow-lg shadow-orange-300 hover:translate-y-[-3px]'>
