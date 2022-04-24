@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import React from 'react';
 import Link from 'next/link';
+import { useSession } from 'next-auth/react';
 
 function SearchProfile({userData: user}) {
     // const router = useRouter();
