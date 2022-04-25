@@ -10,9 +10,9 @@ export default NextAuth({
     }),
     // ...add more providers here
   ],
-
+  secret: process.env.SECRET,
   pages: {
-    signIn: "auth/signin",
+    signIn: "/auth/signin",
   },
 
   callbacks: {
