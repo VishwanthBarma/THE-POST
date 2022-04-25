@@ -18,7 +18,7 @@ function LeftBar() {
      {title: "Search", path: '/search', icon: <IoIosSearch className="btn"/>}]
 
   return (
-    <div className="flex flex-col justify-between items-center space-y-10 h-screen relative py-8">
+    <div className="flex flex-col items-center sm:space-y-10 max-h-fit relative py-8">
       <Link href="/"><a>
           <Image src='/Logo.png' alt="Logo" width={100} height={100}/>
         </a></Link>
@@ -55,7 +55,7 @@ function LeftBar() {
         {
           session?
           (<>
-          <Link href="/profile"><a>
+          <Link href="/profile"><a className='absolute top-[40rem]'>
 
             <div className="cursor-pointer flex space-x-2 items-center">
             <div>
