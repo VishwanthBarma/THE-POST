@@ -7,7 +7,7 @@ import UserProfile from "../../components/UserProfile"
 import { useRouter } from 'next/router';
 
 
-function Profile() {
+function ProfilePage() {
   const {data : session, status} = useSession();
   const router = useRouter();
   const { email } = router.query;
@@ -66,7 +66,7 @@ function Profile() {
   )
 }
 
-export default Profile;
+export default ProfilePage;
 
 
 // "col-span-4 md:col-span-2 lg:col-span-2 
