@@ -60,8 +60,3 @@ function SearchPage() {
 }
 
 export default SearchPage;
-
-
-// "col-span-4 md:col-span-2 lg:col-span-2 
-//             max-h-screen overflow-y-scroll scrollbar scrollbar-thin 
-//             scrollbar-thumb-gray-50 scrollbar-thumb-rounded-full scrollbar-track-rounded-full"

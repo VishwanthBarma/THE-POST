@@ -18,10 +18,6 @@ function Followers() {
         )
     },[db]);
 
-
-
-
-
   return (
     <div>
         {
@@ -42,13 +38,9 @@ function Followers() {
                     }
                 </div>
 
-
             </div>
-
             </>:
-            <>
-
-            </>
+            <></>
         }
     </div>
   )

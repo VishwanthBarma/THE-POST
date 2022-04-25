@@ -8,11 +8,8 @@ import { db, storage } from "../firebase";
 import { getDownloadURL, uploadString, ref } from 'firebase/storage';
 import { useRouter } from 'next/router';
 
-// import Compress from 'compress.js';
-
 
 function Postinput() {
-    // const compress = new Compress();
     const router = useRouter();
     const filePickerRef = useRef();
     const [input, setInput] = useState("");
@@ -20,39 +17,6 @@ function Postinput() {
     const [loading, setLoading] = useState(false);
     const {data: session} = useSession();
     const [maxLength, setMaxLength] = useState(null);
-
-    // async function resizeImageFn(file) {
-
-    //     const resizedImage = await compress.compress([file], {
-    //       size: 2, // the max size in MB, defaults to 2MB
-    //       quality: 1, // the quality of the image, max is 1,
-    //       maxWidth: 300, // the max width of the output image, defaults to 1920px
-    //       maxHeight: 300, // the max height of the output image, defaults to 1920px
-    //       resize: true // defaults to true, set false if you do not want to resize the image width and height
-    //     })
-    //     const img = resizedImage[0];
-    //     const base64str = img.data
-    //     const imgExt = img.ext
-    //     const resizedFiile = Compress.convertBase64ToFile(base64str, imgExt)
-    //     return resizedFiile;
-    //   }
-
-
-    // const [resizedImage, setResizedImage] = useState(undefined);
-
-
-    // const addImage = (event) => {
-    //     if (event.target.files && event.target.files.length > 0) {
-    //       setSelectedFile(event.target.files[0]);
-    //     }
-    //   };
-
-    // const resizeFile = (file) => new Promise(resolve => {
-    //     Resizer.imageFileResizer(file, 300, 300, 'JPEG', 100, 0,
-    //     uri => {
-    //       resolve(uri);
-    //     }, 'base64' );
-    // });
 
 
     const addImage = (e) => {
@@ -103,10 +67,6 @@ function Postinput() {
         const querySnapshot = await getDocs(q);
         const userId = querySnapshot.docs[0].id;
 
-        // const userdocRef = doc(db, "users", querySnapshot.docs[0].id);
-        // await updateDoc(userdocRef, {
-        //     posts: arrayUnion(docRef.id),
-        // })
 
         await setDoc(doc(db, "users", userId, "posts", docRef.id), {
             username: session.user.username,
@@ -152,15 +112,11 @@ function Postinput() {
             }} className='h-8 w-8 absolute md:right-[13rem] right-[8rem] top-[0.5rem] text-slate-700 cursor-pointer hover:text-red-500 drop-shadow-lg'/>
             <input type='file' onChange={addImage} hidden ref={filePickerRef}></input>
             <div>
-            {/* <ImageResize
-                imageToResize={selectedFile}
-                onImageResized={(croppedImage) => setResizedImage(croppedImage)}
-            /> */}
+
             </div>
             </>
         }
             <div className='flex space-x-2 items-center'>
-                {/* <h1 className='flex items-center font-bold'>{maxLength}</h1> */}
                 <button onClick={sendPost} disabled={!input.trim() && !selectedFile} className="shadow-lg disabled:cursor-default disabled:opacity-50 disabled:pointer-events-none text-orange-200 bg-slate-700 shadow-orange-300 font-medium rounded-3xl text-md px-5 py-2.5 text-center mr-2 mb-2 cursor-pointer hover:translate-y-[-3px] active:text-orange-400">Publish</button>
 
             {

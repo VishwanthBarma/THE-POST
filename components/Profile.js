@@ -3,9 +3,6 @@ import { collection, doc, getDoc, query, where, getDocs, limit, orderBy, onSnaps
 import { db } from "../firebase";
 import FeedHead from './FeedHead'
 import { useSession } from 'next-auth/react';
-import { useRouter } from 'next/router';
-import component from '../asset/Component.png'
-import Image from 'next/image';
 import Post from "../components/Post";
 import Link from 'next/link';
 
@@ -173,6 +170,4 @@ function Profile() {
   )
 }
 
-export default Profile
-
-// 'bg-slate-200 rounded-3xl p-3 w-[130px] font-semibold hover:shadow-lg hover:bg-slate-900 hover:text-white active:text-slate-400'
+export default Profile;

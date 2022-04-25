@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { FaGoogle } from "react-icons/fa";
 import { getProviders, signIn, useSession } from "next-auth/react";
-import { collection, addDoc, serverTimestamp, getDoc, doc, query, getDocs, where } from "firebase/firestore";
-import { db } from "../../firebase";
 
 function Signin({providers}) {
   return (

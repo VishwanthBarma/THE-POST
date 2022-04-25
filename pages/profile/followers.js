@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
 import LeftBar from '../../components/LeftBar';
-import Feed from '../../components/Feed';
 import RightBar from '../../components/RightBar';
-import Postinput from '../../components/Postinput';
 import Followers from "../../components/Followers";
 import { useSession } from 'next-auth/react';
 
 function Main() {
   const {data : session} = useSession();
-  const [loading, setLoading] = useState(false);
   
   return (
     <div>
@@ -51,9 +48,7 @@ function Main() {
           <RightBar />
 
           </>:
-          <>
-            Sign In
-          </>
+          <></>
         }
         </div>
       </div> 

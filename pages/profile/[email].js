@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import LeftBar from '../../components/LeftBar';
 import RightBar from '../../components/RightBar';
 import { useSession } from 'next-auth/react';
-import Profile from "../../components/Profile";
 import UserProfile from "../../components/UserProfile"
 import { useRouter } from 'next/router';
 

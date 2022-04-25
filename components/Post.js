@@ -1,11 +1,8 @@
 import React, { cloneElement, useEffect, useState } from 'react';
-import { FaHeart } from 'react-icons/fa';
-import { HiStar } from 'react-icons/hi';
 import {db} from "../firebase";
 import { collection, addDoc, serverTimestamp, getDoc, doc, query, getDocs, where, updateDoc, arrayRemove, increment, arrayUnion, onSnapshot, setDoc, deleteDoc, orderBy } from "firebase/firestore";
 import { useSession } from 'next-auth/react';
 import Moment from 'react-moment';
-import { ContactlessOutlined, PostAddSharp } from '@material-ui/icons';
 import { AiOutlineHeart, AiFillHeart, AiOutlineDelete } from "react-icons/ai";
 
 import Comment from "../components/Comment";
@@ -25,8 +22,6 @@ function Post({post, postId, userid}) {
     const [hasLiked, setHasLiked] = useState(false);
     const [hasSaved, setHasSaved] = useState(false);
     const [isUserPost, setIsUserPost] = useState(false);
-    const [user_id, setuser_id] = useState(null);
-    const [openComment, setopenComment] = useState(false);
     const [commentClicked, setcommentClicked] = useState(false);
 
 
@@ -157,8 +152,6 @@ function Post({post, postId, userid}) {
             await deleteDoc(doc(db, "users", userId, "likedposts", postId));
 
         }else{
-            // const postRef = doc(db, "posts", postId);
-            // const docSnap = await getDoc(postRef);
 
             await setDoc(doc(db, "posts", postId, "likes", session.user.uid), {
                 username: session.user.username,      
@@ -271,9 +264,7 @@ function Post({post, postId, userid}) {
                 </div>
 
                 </>:
-                <>
-
-                </>
+                <></>
             }
 
             <div className='cursor-pointer'>
@@ -334,9 +325,7 @@ function Post({post, postId, userid}) {
 
 
                 </>:
-                <>
-
-                </>
+                <></>
             }
 
         </div>

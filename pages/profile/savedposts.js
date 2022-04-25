@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import LeftBar from '../../components/LeftBar';
-import Feed from '../../components/Feed';
 import RightBar from '../../components/RightBar';
-import Postinput from '../../components/Postinput';
-import Following from "../../components/Following";
 import { useSession } from 'next-auth/react';
 import Savedposts from "../../components/Savedposts";
 
@@ -52,9 +49,7 @@ function Main() {
           <RightBar />
 
           </>:
-          <>
-            Sign In
-          </>
+          <></>
         }
         </div>
       </div> 

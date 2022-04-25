@@ -1,18 +1,12 @@
 import React, { useState } from 'react';
-import background from "../asset/Component.png";
 import LeftBar from './LeftBar';
 import Feed from './Feed';
 import RightBar from './RightBar';
-import Postinput from './Postinput';
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';
-import { width } from '@mui/system';
-import { useRouter } from 'next/router';
 
 function Main() {
-  const router = useRouter();
   const {data : session} = useSession();
-  const [loading, setLoading] = useState(false);
   
   return (
     <div className={`${session? "": "bg-[url('../asset/Component.png')]"} bg-cover h-screen`}>
@@ -25,7 +19,6 @@ function Main() {
           session &&
           <>
           <LeftBar />
-
           </>
         }
         </div>
@@ -54,7 +47,6 @@ function Main() {
                           <div className='cursor-pointer bg-neutral-800 px-5 rounded-3xl shadow-lg shadow-orange-300 hover:translate-y-[-3px]'>
                             <button className='text-orange-100 font-semibold p-3' type="button">Sign In</button>
                           </div>
-                          {/* <button type="button" className=" text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-3xl text-md px-5 py-2.5 text-center mr-2 mb-2">Sign In</button> */}
                           </a></Link>
                     </div>
                     <div className='flex flex-col items-center relative sm:h-[22rem] h-[19.5rem]'>
@@ -80,11 +72,8 @@ function Main() {
           session?
           <>
           <RightBar />
-
           </>:
-          <>
-            
-          </>
+          <></>
         }
         </div>
       </div> 
@@ -94,8 +83,3 @@ function Main() {
 }
 
 export default Main;
-
-
-// "col-span-4 md:col-span-2 lg:col-span-2 
-//             max-h-screen overflow-y-scroll scrollbar scrollbar-thin 
-//             scrollbar-thumb-gray-50 scrollbar-thumb-rounded-full scrollbar-track-rounded-full"

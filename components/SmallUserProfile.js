@@ -1,7 +1,6 @@
 import { collection, onSnapshot, doc, getDoc, deleteDoc, query, where, getDocs, addDoc } from 'firebase/firestore';
 import { useSession } from 'next-auth/react';
 import React, { useEffect, useState } from 'react'
-import { HiUserAdd } from 'react-icons/hi';
 import { db } from '../firebase';
 import { AiOutlineDelete, AiFillDelete } from "react-icons/ai";
 import Link from 'next/link';
@@ -62,9 +61,6 @@ function SmallUserProfile({id, infollowing, infollowers, user}) {
 
     const followFollowers = async() => {
         setLoading(true);
-        // await addDoc(collection(db, "users", userId, "following"), {
-    //     email: user.email,
-    // });
         await addDoc(collection(db, "users", session.user.email, "following"), {
             email: user,
         })
@@ -133,9 +129,7 @@ function SmallUserProfile({id, infollowing, infollowers, user}) {
                 </>
                 
                 :
-                <>
-
-                </>
+                <></>
             }
         </div>
     </>:

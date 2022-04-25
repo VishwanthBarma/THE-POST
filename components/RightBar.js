@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { IoSearch } from 'react-icons/io5';
 import SuggPeople from './SuggPeople';
 import { getSession, useSession } from 'next-auth/react';
 import { db } from "../firebase";
 import { collection, query, where, getDocs, limit, orderBy, onSnapshot } from "firebase/firestore";
-import { PermPhoneMsg } from '@material-ui/icons';
 
 
 
@@ -55,9 +53,7 @@ function RightBar() {
             .slice(0,5).map((user) => (<SuggPeople key={user.id} user={user.data()} />))
 
           :
-          <>
-            
-          </>
+          <></>
         }
 
         </div>

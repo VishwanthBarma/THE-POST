@@ -1,14 +1,9 @@
-import { useRouter } from 'next/router';
 import React from 'react';
 import Link from 'next/link';
-import { useSession } from 'next-auth/react';
+
 
 function SearchProfile({userData: user}) {
-    // const router = useRouter();
-    // const openProfile = () => {
-    //     const username = user.username;
-    //     router.push("/profile/[username]");
-    // }
+
   return (
     <div className='py-3'>
     <Link href={{

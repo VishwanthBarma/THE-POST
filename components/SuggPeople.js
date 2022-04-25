@@ -2,7 +2,6 @@ import { useSession } from 'next-auth/react'
 import React, { useEffect, useState } from 'react';
 import {db} from "../firebase";
 import { collection, addDoc, serverTimestamp, getDoc, doc, query, getDocs, where, updateDoc, arrayRemove, increment, arrayUnion, onSnapshot, setDoc, deleteDoc, orderBy } from "firebase/firestore";
-import { useSnackbar } from 'notistack';
 
 function SuggPeople({user}) {
   const {data: session} = useSession();

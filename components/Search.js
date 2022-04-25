@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import {db} from "../firebase";
 import SearchProfile from "../components/SearchProfile";
 import { collection, addDoc, serverTimestamp, getDoc, doc, query, getDocs, where, updateDoc, arrayRemove, increment, arrayUnion, onSnapshot, setDoc, deleteDoc, orderBy } from "firebase/firestore";
-import { set } from 'react-hook-form';
 import { useSession } from 'next-auth/react';
 
 
@@ -29,7 +28,7 @@ function Search() {
 
         {input && session && 
           users.filter((user) => user.data().username.includes(input.toLowerCase()))
-            .map((user) => ((user.data().email !== session.user.email) && <SearchProfile userData={user.data()} />))
+            .map((user) => ((user.data().email !== session.user.email) && <SearchProfile key={user.id} userData={user.data()} />))
         }
         
         </div>
