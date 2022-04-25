@@ -33,7 +33,7 @@ function LeftBar() {
             return (
               <>
               <div className="btn-div flex cursor-pointer items-center space-x-2 font-semibold">
-              <Link href={item.path}><a  className={`${router.pathname.split('/')[1] === item.path.split('/')[1] ? "active": "hover:text-gray-500 hover:drop-shadow-md hover:scale-110"} btn-div flex cursor-pointer items-center space-x-2 font-semibold`}>
+              <Link href={item.path}><a  className={`${router.pathname.split('/')[1] === item.path.split('/')[1] ? "active": "hover:text-gray-600 hover:drop-shadow-sm hover:scale-110"} btn-div flex cursor-pointer items-center space-x-2 font-semibold`}>
                   {item.icon}
                   <h3 className="hidden md:block text-xl ">{item.title}</h3>
                   </a></Link>

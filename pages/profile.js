@@ -58,7 +58,6 @@ function profile() {
 
           </>:
           <>
-            Sign In
           </>
         }
         </div>

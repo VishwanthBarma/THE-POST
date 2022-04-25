@@ -49,7 +49,6 @@ function search() {
           <RightBar />
           :
           <>
-            Sign In
           </>
 
         }

@@ -14,6 +14,7 @@ import { FaRegCommentAlt, FaCommentAlt } from "react-icons/fa";
 
 import { RiBookmarkLine, RiBookmarkFill } from "react-icons/ri";
 import Link from 'next/link';
+import { getStorage, ref, deleteObject } from "firebase/storage";
 
 
 function Post({post, postId, userid}) {
@@ -112,6 +113,18 @@ function Post({post, postId, userid}) {
         // deleting doc
         await deleteDoc(doc(db, "users", userid, "posts", postId));
         await deleteDoc(doc(db, "posts", postId));
+
+        const storage = getStorage();
+
+        const desertRef = ref(storage, post.photoUrl);
+
+        // Delete the file
+        deleteObject(desertRef).then(() => {
+            console.log("File Deleted Successfully");
+        }).catch((error) => {
+            console.log("File Deletion Unsuccessfull.");
+        });
+
     }
 
     const savePost = async () => {

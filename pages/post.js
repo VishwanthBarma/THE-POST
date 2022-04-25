@@ -44,7 +44,11 @@ function Post() {
         </div>
         {/* right part */}
         <div className='hidden lg:block max-h-screen sticky'>
+        {
+          session && 
           <RightBar />
+
+        }
         </div>
       </div> 
     </div>

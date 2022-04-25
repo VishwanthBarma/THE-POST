@@ -7,8 +7,10 @@ import Postinput from './Postinput';
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { width } from '@mui/system';
+import { useRouter } from 'next/router';
 
 function Main() {
+  const router = useRouter();
   const {data : session} = useSession();
   const [loading, setLoading] = useState(false);
   

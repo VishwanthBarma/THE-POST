@@ -19,6 +19,7 @@ function Postinput() {
     const [selectedFile, setSelectedFile] = useState(null);
     const [loading, setLoading] = useState(false);
     const {data: session} = useSession();
+    const [maxLength, setMaxLength] = useState(null);
 
     const addImage = (e) => {
         const reader = new FileReader();
@@ -57,6 +58,7 @@ function Postinput() {
                 const postRef = doc(db, "posts", docRef.id);
                 await updateDoc(postRef, {
                     photo: downloadURL,
+                    photoUrl: `posts/${docRef.id}/image`,
                 });
             });
         }
@@ -86,18 +88,22 @@ function Postinput() {
   return (
     <div className='flex flex-col items-center p-5 space-y-5'>
 
-        <div className="border-b-2 border-slate-500">
+        <div className="border-b-2 border-slate-500 w-[18rem] md:w-[30rem] relative mb-8">
             <FeedHead name="ADD POST"/>
+            <h1 className={`${maxLength < 200 ? (maxLength < 150 ? (maxLength < 100 ? (maxLength < 70 ? (maxLength < 30 ? "text-red-700" : "text-orange-600") : "text-yellow-600"): "text-yellow-400") : "text-green-600") : "text-green-400"} flex items-center font-bold absolute left-3 mt-2`}>{maxLength}</h1>
         </div>
         <div className='shadow-lg rounded-xl'>
-            <textarea onChange={(e) => setInput(e.target.value)} maxLength="280" value={input} name='description' className='rounded-xl resize-none h-[13rem] w-[18rem] md:w-[30rem] p-2 text-lg' rows="5" placeholder='What you want to share?'></textarea>
+            <textarea onChange={(e) => {
+            setInput(e.target.value);
+            setMaxLength(281 - input.length);
+            }} maxLength="282" value={input} name='description' className='rounded-xl resize-none h-[13rem] w-[18rem] md:w-[30rem] p-2 text-lg' rows="5" placeholder='What you want to share?'></textarea>
         </div>
 
         {selectedFile && 
             <>
                 <div className='flex flex-col space-y-2'>
                     <MdOutlineCancel onClick={() => setSelectedFile(null)} className='cursor-pointer h-6 w-6 hover:opacity-50'/>
-                    <img className='md:max-h-[18rem] max-h-[14rem] max-w-[23rem] md:max-w-[27rem] object-contain rounded-xl' src={selectedFile}></img>
+                    <img className='sm:max-h-[18rem] max-h-[12rem] max-w-[18rem] sm:max-w-[27rem] object-contain rounded-xl' src={selectedFile}></img>
                 </div>
             </>
         }
@@ -112,8 +118,10 @@ function Postinput() {
             <input type='file' onChange={addImage} hidden ref={filePickerRef}></input>
             </>
         }
-            <div className='flex space-x-2'>
-                <button onClick={sendPost} disabled={!input.trim() && !selectedFile} className="shadow-lg disabled:cursor-default disabled:opacity-50 disabled:pointer-events-none text-white bg-gradient-to-r from-cyan-600 to-blue-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-500 font-medium rounded-3xl text-md px-5 py-2.5 text-center mr-2 mb-2 cursor-pointer">Publish</button>
+            <div className='flex space-x-2 items-center'>
+                {/* <h1 className='flex items-center font-bold'>{maxLength}</h1> */}
+                <button onClick={sendPost} disabled={!input.trim() && !selectedFile} className="shadow-lg disabled:cursor-default disabled:opacity-50 disabled:pointer-events-none text-orange-200 bg-slate-700 shadow-orange-300 font-medium rounded-3xl text-md px-5 py-2.5 text-center mr-2 mb-2 cursor-pointer hover:translate-y-[-3px] active:text-orange-400">Publish</button>
+
             {
                 loading&& 
                 <>
