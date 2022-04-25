@@ -5,7 +5,8 @@ import { getProviders, signIn, useSession } from "next-auth/react";
 function Signin({providers}) {
   return (
     <>
-      {Object.values(providers).map((provider) => (
+      {
+        Object.values(providers).map((provider) => (
         <div key={provider.name}>
           <div className="bg-[url('../asset/Component.png')] bg-cover h-screen bg-neutral-900">
 
