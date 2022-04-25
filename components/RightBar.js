@@ -53,7 +53,14 @@ function RightBar() {
 
         <div className="flex flex-col space-y-6">
         {session?
-          people.slice(0,5).map((user) => {
+          /* users.filter((user) => user.data().username.includes(input.toLowerCase()))
+            .map((user) => ((user.data().email !== session.user.email) && <SearchProfile userData={user.data()} />)) */
+
+          people.filter((user) => (following.findIndex((person) => (person.data().email === user.data().email)) === -1))
+            .slice(0,5).map((user) => (<SuggPeople user={user.data()} />))
+
+
+          /* people.slice(0,6).map((user) => {
             if(following.findIndex((person) => (person.data().email === user.data().email)) === -1){
               return(
               <SuggPeople
@@ -61,7 +68,7 @@ function RightBar() {
               />
               )
             }
-          })
+          }) */
           :
           <>
             

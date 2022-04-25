@@ -184,7 +184,7 @@ function Post({post, postId, userid}) {
                     </div>
                     </div>
                 </div>
-            </a>̀~~
+            </a>
         </Link>
         {/* post description */}
 

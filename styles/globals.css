@@ -8,10 +8,10 @@
     }
 
     .btn-div {
-        @apply transition ease-in duration-200 cursor-pointer hover:text-orange-300;
+        @apply transition ease-in duration-200 cursor-pointer;
     }
 
     .active{
-        @apply text-orange-500;
+        @apply text-green-600 drop-shadow-md;
     }
 }

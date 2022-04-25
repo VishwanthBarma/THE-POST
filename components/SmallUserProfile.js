@@ -93,7 +93,7 @@ function SmallUserProfile({id, infollowing, infollowers, user}) {
     {
         session && userData?
     <>
-        <div className='flex space-x-4 py-3 px-4 md:px-9 justify-between bg-gray-900 rounded-3xl text-white shadow-2xl hover:translate-y-[-3px] hover:shadow-inner'>
+        <div className='flex space-x-4 py-3 px-4 md:px-9 justify-between bg-gray-900 bg-opacity-90 rounded-3xl text-white shadow-2xl hover:translate-y-[-3px] hover:shadow-inner'>
             <Link href={{
                 pathname: '/profile/[email]',
                 query: {email: user},

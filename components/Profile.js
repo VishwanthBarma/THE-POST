@@ -21,6 +21,16 @@ function Profile() {
     const [userid, setuserid] = useState();
     const [posts, setPosts] = useState([]);
 
+    function numFormatter(num) {
+        if(num > 999 && num < 1000000){
+            return (num/1000).toFixed(0) + 'K';
+        }else if(num > 1000000){
+            return (num/1000000).toFixed(0) + 'M'; 
+        }else if(num < 900){
+            return num; 
+        }
+    }
+
   useEffect(() => {
     onSnapshot(query(collection(db, "posts")),
       (snapshot) => {
@@ -96,7 +106,7 @@ function Profile() {
 
             <div className='cursor-pointer flex space-x-2 bg-gray-800 rounded-3xl p-2 px-3 text-md shadow-md hover:shadow-xl hover:translate-y-[-3px] hover:bg-slate-700 active:bg-black'>
                 <h1 className='font-semibold text-white'>Followers</h1>
-                <h1 className='text-green-500 font-semibold'>{followers.length}</h1>
+                <h1 className='text-green-500 font-semibold'>{numFormatter(followers.length)}</h1>
             </div>
             </a>
         </Link>
@@ -105,7 +115,7 @@ function Profile() {
             <a>
             <div className='cursor-pointer flex space-x-2 bg-gray-800 rounded-3xl p-2 px-3 text-md shadow-md hover:shadow-xl hover:translate-y-[-3px] hover:bg-slate-700 active:bg-black'>
                 <h1 className='font-semibold text-white'>Following</h1>
-                <h1 className='text-green-500 font-semibold'>{following.length}</h1>
+                <h1 className='text-green-500 font-semibold'>{numFormatter(following.length)}</h1>
             </div>
             </a>
         </Link>
@@ -114,12 +124,12 @@ function Profile() {
         <div className='flex space-x-8 items-center justify-center'>
         <Link href="/profile/savedposts" passHref>
             <a>
-                <button className='bg-slate-200 rounded-3xl px-3 py-1.5 font-semibold hover:shadow-lg hover:bg-slate-700 hover:text-white active:text-slate-400'>Saved Posts<span className='text-green-500 font-semibold ml-2'>{savedposts.length}</span></button>
+                <button className='bg-slate-200 rounded-3xl px-3 py-1.5 font-semibold hover:shadow-lg hover:bg-slate-700 hover:text-white active:text-slate-400'>Saved Posts<span className='text-green-500 font-semibold ml-2'>{numFormatter(savedposts.length)}</span></button>
             </a>
         </Link>
         <Link href="/profile/likedposts" passHref>
             <a>
-                <button className='bg-slate-200 rounded-3xl px-3 py-1.5 font-semibold hover:shadow-lg hover:bg-slate-700 hover:text-white active:text-slate-400'>Liked Posts<span className='text-green-500 font-semibold ml-2'>{likedposts.length}</span></button>
+                <button className='bg-slate-200 rounded-3xl px-3 py-1.5 font-semibold hover:shadow-lg hover:bg-slate-700 hover:text-white active:text-slate-400'>Liked Posts<span className='text-green-500 font-semibold ml-2'>{numFormatter(likedposts.length)}</span></button>
             </a>
         </Link>
         </div>
@@ -127,7 +137,7 @@ function Profile() {
         <div>
         <div className='flex space-x-3 px-7'>
                 <h1 className='text-lg font-bold mb-2'>POSTS</h1>
-                <h1 className='text-green-500 font-bold text-lg'>{userPosts.length}</h1>
+                <h1 className='text-green-500 font-bold text-lg'>{numFormatter(userPosts.length)}</h1>
             </div>
             <div className='mb-8'>
 

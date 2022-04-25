@@ -6,7 +6,6 @@ import { set } from 'react-hook-form';
 import { useSession } from 'next-auth/react';
 
 
-
 function Search() {
   const [input, setInput] = useState();
   const [users, setUsers] = useState([]);

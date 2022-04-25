@@ -20,6 +20,7 @@ function profile() {
         {/* left part */}
         <div className="max-h-screen sticky">
           <LeftBar />
+          {/* <></> */}
         </div>
         {/* middle part */}
 
@@ -47,6 +48,9 @@ function profile() {
         </div>
         {/* right part */}
         <div className='hidden lg:block max-h-screen sticky'>
+        <>
+
+        </>
         {
           session ?
           <>
