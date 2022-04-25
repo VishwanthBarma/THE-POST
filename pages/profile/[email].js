@@ -10,6 +10,7 @@ function ProfilePage() {
   const {data : session, status} = useSession();
   const router = useRouter();
   const { email } = router.query;
+  console.log(email);
 
   return (
     <div>

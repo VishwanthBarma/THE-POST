@@ -172,8 +172,8 @@ function Post({post, postId, userid}) {
 
             
         <Link href={{
-            pathname: (post.email == session.user.email)? '/profile' : '/profile/[email]',
-            query: {email: userid},
+            pathname: (post.email === session.user.email)? '/profile' : '/profile/[email]',
+            query: {email: post.email},
         }}>
             <a>
                 <div>
