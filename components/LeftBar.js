@@ -8,6 +8,7 @@ import { IoIosSearch } from "react-icons/io";
 import { db } from "../firebase";
 import { collection, query, where, getDocs, limit, orderBy, onSnapshot, addDoc } from "firebase/firestore";
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 // import Cookies from "js-cookie";
 
 
@@ -22,7 +23,9 @@ function LeftBar() {
   return (
     <div className="flex flex-col justify-between items-center space-y-10 h-screen relative py-8">
       <Link href="/"><a>
-          <h2 className="text-xl md:text-3xl font-bold cursor-pointer">T<span className="text-slate-700">he</span>P<span className="text-slate-700">ost</span> </h2>
+      <Image src='/Logo.png' alt="Logo" width={100} height={100}/>
+      {/* <img src={Logo}></img> */}
+          {/* <h2 className="text-xl md:text-3xl font-bold cursor-pointer">T<span className="text-slate-700">he</span>P<span className="text-slate-700">ost</span> </h2> */}
         </a></Link>
 
         <div className="flex flex-col items-center md:items-start space-y-7 absolute top-40">

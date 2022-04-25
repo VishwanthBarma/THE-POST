@@ -16,13 +16,13 @@ function Feed() {
   // const [userid, setuserid] = useState(null);
   // const [user, setUser] = useState([]);
 
-  useEffect(() => {
-    onSnapshot(query(collection(db, "posts")),
+  useEffect(() => 
+    onSnapshot(query(collection(db, "posts"), orderBy("timestamp")),
       (snapshot) => {
-        setPosts(snapshot.docs);
+        setPosts((snapshot.docs).reverse());
       }
     )
-  },[]);
+  ,[db]);
 
   // useEffect(() => {
   //   onSnapshot(query(collection(db, "users"), where("email", "==", session.user?.email)),

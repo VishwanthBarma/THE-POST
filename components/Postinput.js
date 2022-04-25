@@ -9,10 +9,15 @@ import path from 'path';
 import { getDownloadURL, uploadString, ref } from 'firebase/storage';
 import { userInfo } from 'os';
 import { useRouter } from 'next/router';
+import ImageResize from './ImageResize';
+import Resizer from "react-image-file-resizer";
+// import Compress from 'compress.js';
+
 
 
 
 function Postinput() {
+    // const compress = new Compress();
     const router = useRouter();
     const filePickerRef = useRef();
     const [input, setInput] = useState("");
@@ -20,6 +25,40 @@ function Postinput() {
     const [loading, setLoading] = useState(false);
     const {data: session} = useSession();
     const [maxLength, setMaxLength] = useState(null);
+
+    // async function resizeImageFn(file) {
+
+    //     const resizedImage = await compress.compress([file], {
+    //       size: 2, // the max size in MB, defaults to 2MB
+    //       quality: 1, // the quality of the image, max is 1,
+    //       maxWidth: 300, // the max width of the output image, defaults to 1920px
+    //       maxHeight: 300, // the max height of the output image, defaults to 1920px
+    //       resize: true // defaults to true, set false if you do not want to resize the image width and height
+    //     })
+    //     const img = resizedImage[0];
+    //     const base64str = img.data
+    //     const imgExt = img.ext
+    //     const resizedFiile = Compress.convertBase64ToFile(base64str, imgExt)
+    //     return resizedFiile;
+    //   }
+
+
+    // const [resizedImage, setResizedImage] = useState(undefined);
+
+
+    // const addImage = (event) => {
+    //     if (event.target.files && event.target.files.length > 0) {
+    //       setSelectedFile(event.target.files[0]);
+    //     }
+    //   };
+
+    // const resizeFile = (file) => new Promise(resolve => {
+    //     Resizer.imageFileResizer(file, 300, 300, 'JPEG', 100, 0,
+    //     uri => {
+    //       resolve(uri);
+    //     }, 'base64' );
+    // });
+
 
     const addImage = (e) => {
         const reader = new FileReader();
@@ -53,6 +92,7 @@ function Postinput() {
         const imgRef = ref(storage, `posts/${docRef.id}/image`);
 
         if(selectedFile){
+            // const image = await resizeImageFn(selectedFile);
             await uploadString(imgRef, selectedFile, "data_url").then(async () => {
                 const downloadURL = await getDownloadURL(imgRef);
                 const postRef = doc(db, "posts", docRef.id);
@@ -116,6 +156,12 @@ function Postinput() {
                 filePickerRef.current.click()
             }} className='h-8 w-8 absolute md:right-[13rem] right-[8rem] top-[0.5rem] text-slate-700 cursor-pointer hover:text-red-500 drop-shadow-lg'/>
             <input type='file' onChange={addImage} hidden ref={filePickerRef}></input>
+            <div>
+            {/* <ImageResize
+                imageToResize={selectedFile}
+                onImageResized={(croppedImage) => setResizedImage(croppedImage)}
+            /> */}
+            </div>
             </>
         }
             <div className='flex space-x-2 items-center'>

@@ -304,9 +304,7 @@ function Post({post, postId, userid}) {
                     <h2 className='hover:drop-shadow-lg sm:text-md text-[14px]'>{numFormatter(comments.length)}</h2>
                 }
                 </div>
-
                 </>
-
             }  
             </div>
 
@@ -317,7 +315,7 @@ function Post({post, postId, userid}) {
                 comments.length > 0 && 
                 <>
                     <p className='text-neutral-400 ml-2 font-semibold text-sm italic'>Comments</p>
-                    <div className='h-[150px] overflow-y-scroll'>
+                    <div className='max-h-[150px] overflow-y-scroll'>
                         {
                             comments.map((comment) => (
                                 <Comment id={comment.id} postId={postId} data={comment.data()}/>
