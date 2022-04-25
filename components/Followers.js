@@ -36,7 +36,7 @@ function Followers() {
                     { session &&
                         followers.map((person) => {
                             return (
-                                <SmallUserProfile infollowers={true} infollowing={false} id={person.id} user={person.data().email}/>
+                                <SmallUserProfile key={person.id} infollowers={true} infollowing={false} id={person.id} user={person.data().email}/>
                             );
                         })
                     }

@@ -193,7 +193,6 @@ function Post({post, postId, userid}) {
                         <div className='text-slate-500 text-sm'>
                             <Moment fromNow>{post.timestamp.toDate()}</Moment>
                         </div>
-                        {/* <p className="text-gray-500 text-sm">05 April 2022</p> */}
                     </div>
                     </div>
                 </div>
@@ -318,7 +317,7 @@ function Post({post, postId, userid}) {
                     <div className='max-h-[150px] overflow-y-scroll'>
                         {
                             comments.map((comment) => (
-                                <Comment id={comment.id} postId={postId} data={comment.data()}/>
+                                <Comment key={comment.id} id={comment.id} postId={postId} data={comment.data()}/>
                             ))
                         }
                     </div>

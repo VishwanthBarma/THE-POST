@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import LeftBar from '../../components/LeftBar';
-import Feed from '../../components/Feed';
 import RightBar from '../../components/RightBar';
-import Postinput from '../../components/Postinput';
 import { useSession } from 'next-auth/react';
 import Profile from "../../components/Profile";
-import { collection, doc, getDoc, query, where, getDocs, limit, orderBy, onSnapshot } from "firebase/firestore";
 import UserProfile from "../../components/UserProfile"
 import { useRouter } from 'next/router';
 
 
-function profile() {
+function Profile() {
   const {data : session, status} = useSession();
   const router = useRouter();
   const { email } = router.query;
@@ -22,7 +19,10 @@ function profile() {
 
         {/* left part */}
         <div className="max-h-screen sticky">
+        {
+          session &&
           <LeftBar />
+        }
         </div>
         {/* middle part */}
 
@@ -57,7 +57,6 @@ function profile() {
 
           </>:
           <>
-            Sign In
           </>
         }
         </div>
@@ -67,7 +66,7 @@ function profile() {
   )
 }
 
-export default profile;
+export default Profile;
 
 
 // "col-span-4 md:col-span-2 lg:col-span-2 

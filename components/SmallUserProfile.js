@@ -112,8 +112,8 @@ function SmallUserProfile({id, infollowing, infollowers, user}) {
                 <div className='flex items-center'>
                     {
                         loading &&
-                        <div class="spinner-border animate-spin inline-block w-[26px] h-[26px] border-4 rounded-full mr-2" role="status">
-                            <span class="font-bold text-3xl">.</span>
+                        <div className="spinner-border animate-spin inline-block w-[26px] h-[26px] border-4 rounded-full mr-2" role="status">
+                            <span className="font-bold text-3xl">.</span>
                         </div>
                     }
                     <AiFillDelete onClick={deleteFollower} className='cursor-pointer w-5 h-5 mr-2 md:w-6 md:h-6 md:mr-3 text-red-400 hover:text-red-600'/>

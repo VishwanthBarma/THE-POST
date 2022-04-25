@@ -41,10 +41,7 @@ function RightBar() {
           No login password credentials are stored in our database, they are completely authorized
           and authenticated by Google Services.
         </h1>
-            {/* <div className="cursor-pointer flex items-center space-x-2 relative mr-36">
-                <IoSearch className="shrink-0 h-6 w-6"/>
-                <input className="cursor-pointer absolute bg-transparent text-black placeholder-gray-700 pl-6 outline-none" type="text" placeholder="search for people"></input>
-            </div> */}
+ 
         </div>
 
         <div>
@@ -53,22 +50,10 @@ function RightBar() {
 
         <div className="flex flex-col space-y-6">
         {session?
-          /* users.filter((user) => user.data().username.includes(input.toLowerCase()))
-            .map((user) => ((user.data().email !== session.user.email) && <SearchProfile userData={user.data()} />)) */
 
           people.filter((user) => (following.findIndex((person) => (person.data().email === user.data().email)) === -1))
-            .slice(0,5).map((user) => (<SuggPeople user={user.data()} />))
+            .slice(0,5).map((user) => (<SuggPeople key={user.id} user={user.data()} />))
 
-
-          /* people.slice(0,6).map((user) => {
-            if(following.findIndex((person) => (person.data().email === user.data().email)) === -1){
-              return(
-              <SuggPeople
-                user={user.data()}
-              />
-              )
-            }
-          }) */
           :
           <>
             

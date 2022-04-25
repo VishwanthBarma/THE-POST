@@ -5,7 +5,7 @@ import RightBar from '../components/RightBar';
 import Postinput from '../components/Postinput';
 import { useSession } from 'next-auth/react';
 
-function Post() {
+function PostPage() {
   const {data : session} = useSession();
   
   return (
@@ -56,7 +56,7 @@ function Post() {
   )
 }
 
-export default Post;
+export default PostPage;
 
 
 // "col-span-4 md:col-span-2 lg:col-span-2 

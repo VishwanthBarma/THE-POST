@@ -34,7 +34,7 @@ function Following() {
                         
                         following.map((person) => {
                             return (
-                                <SmallUserProfile infollowers={false} infollowing={true} id={person.id} user={person.data().email}/>
+                                <SmallUserProfile key={person.id} infollowers={false} infollowing={true} id={person.id} user={person.data().email}/>
                             );
                         })
                         :

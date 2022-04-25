@@ -4,7 +4,7 @@ import RightBar from '../components/RightBar';
 import { useSession } from 'next-auth/react';
 import Search from "../components/Search";
 
-function search() {
+function SearchPage() {
   const {data : session} = useSession();
   
   return (
@@ -59,7 +59,7 @@ function search() {
   )
 }
 
-export default search;
+export default SearchPage;
 
 
 // "col-span-4 md:col-span-2 lg:col-span-2 

@@ -171,9 +171,9 @@ function Postinput() {
             {
                 loading&& 
                 <>
-                <div class="">
-                <div class="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full" role="status">
-                    <span class="visually-hidden text-3xl">.</span>
+                <div className="">
+                <div className="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full" role="status">
+                    <span className="visually-hidden text-3xl">.</span>
                 </div>
                 </div>
                 </>
