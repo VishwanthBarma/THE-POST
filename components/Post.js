@@ -317,11 +317,13 @@ function Post({post, postId, userid}) {
                 comments.length > 0 && 
                 <>
                     <p className='text-neutral-400 ml-2 font-semibold text-sm italic'>Comments</p>
-                    {
-                        comments.slice(0,2).map((comment) => (
-                            <Comment id={comment.id} postId={postId} data={comment.data()}/>
-                        ))
-                    }
+                    <div className='h-[150px] overflow-y-scroll'>
+                        {
+                            comments.map((comment) => (
+                                <Comment id={comment.id} postId={postId} data={comment.data()}/>
+                            ))
+                        }
+                    </div>
                 </>
             }
                 
