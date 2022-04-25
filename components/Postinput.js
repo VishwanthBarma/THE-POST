@@ -5,15 +5,10 @@ import { MdOutlineCancel } from "react-icons/md";
 import { collection, doc, query, where, getDocs, limit, orderBy, onSnapshot, addDoc, serverTimestamp, updateDoc, setDoc, arrayUnion } from "firebase/firestore";
 import { useSession } from 'next-auth/react';
 import { db, storage } from "../firebase";
-import path from 'path';
 import { getDownloadURL, uploadString, ref } from 'firebase/storage';
-import { userInfo } from 'os';
 import { useRouter } from 'next/router';
-import ImageResize from './ImageResize';
-import Resizer from "react-image-file-resizer";
+
 // import Compress from 'compress.js';
-
-
 
 
 function Postinput() {
