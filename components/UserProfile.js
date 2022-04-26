@@ -95,7 +95,7 @@ function UserProfile({user}) {
     
 
     const followUnfollowing = async () => {
-        setLoading(true);
+        
 
         await addDoc(collection(db, "users", session.user.email, "following"), {
             email: user,
@@ -105,11 +105,11 @@ function UserProfile({user}) {
             email: session.user.email,
         })
 
-        setLoading(false);
+        
     }
 
     const unfollowFollowing = async () => {
-        setLoading(true);
+       
         const q = query(collection(db, "users", user, "followers"), where("email", "==", session.user.email));
         const querySnapshot = await getDocs(q);
 
@@ -120,7 +120,7 @@ function UserProfile({user}) {
         await deleteDoc(doc(db, "users", session.user.email, "following", puerySnapshot.docs[0].id));
         await deleteDoc(doc(db, "users", user, "followers", querySnapshot.docs[0].id));        
 
-        setLoading(false);
+        
     }
 
 
