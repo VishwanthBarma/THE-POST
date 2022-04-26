@@ -7,6 +7,7 @@ import { BsPerson } from "react-icons/bs";
 import { IoIosSearch } from "react-icons/io";
 import { useRouter } from 'next/router';
 import Image from 'next/image';
+import { callbackify } from 'util';
 
 
 function LeftBar() {
@@ -18,7 +19,7 @@ function LeftBar() {
      {title: "Search", path: '/search', icon: <IoIosSearch className="btn"/>}]
 
   return (
-    <div className="flex flex-col items-center sm:space-y-10 max-h-fit relative py-8">
+    <div className="flex min-h- flex-col items-center sm:space-y-10 max-h-fit relative py-8">
       <Link href="/"><a>
           <Image src='/Logo.png' alt="Logo" width={100} height={100}/>
         </a></Link>
@@ -42,8 +43,8 @@ function LeftBar() {
           {session && 
             <>
             <div onClick={() => {
-              signOut();
               router.push("/");
+              signOut();
             }} className='md:border-2 cursor-pointer border-black rounded-3xl flex justify-center p-1 md:px-4 hover:border-white hover:text-white hover:bg-black'>
             <button className='hidden md:block'>LogOut</button>
             <IoLogOutOutline className='btn md:hidden'/>
