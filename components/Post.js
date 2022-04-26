@@ -77,7 +77,7 @@ function Post({post, postId, userid}) {
     }, [saves]);
 
     useEffect(() => {
-        setIsUserPost(posts.findIndex((Upost) => (Upost.data().email === session?.user?.email)) !== -1);
+        setIsUserPost(post.email === session.user.email);
     }, [posts]);
 
 
