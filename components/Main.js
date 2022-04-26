@@ -55,8 +55,8 @@ function Main() {
                     </div>
                     <div className='sm:p-7 px-4 sm:py-10 py-5 flex items-center bg-slate-100 rounded-3xl bg-opacity-50 border-2 shadow-lg backdrop-blur-sm'>
                   <h1 className=' text-xl text-slate-500'>
-                    No password credentials are stored in our database,
-                     this is an open source project completely built for fun.
+                     This is an open source project completely built for fun.Licensed under the 
+GPLv3.
                     <a className='sm:text-blue-500 text-sky-400' href='https://github.com/VishwanthBarma/THE-POST'> Source code</a>
                   </h1>
                 </div>
