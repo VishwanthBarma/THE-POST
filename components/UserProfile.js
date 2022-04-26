@@ -154,20 +154,20 @@ function UserProfile({user}) {
         
         <div className='flex justify-center space-x-5'>
 
-            <div className='cursor-default flex space-x-2 bg-gray-800 rounded-3xl p-2 px-3 text-md shadow-md'>
-                <h1 className='font-semibold text-white'>Followers</h1>
+            <div className='cursor-default flex space-x-2 rounded-3xl p-2 px-3 text-md shadow-md'>
+                <h1 className='font-semibold'>Followers</h1>
                 <h1 className='text-green-500 font-semibold'>{followers.length}</h1>
             </div>
         
-            <div className='cursor-default flex space-x-2 bg-gray-800 rounded-3xl p-2 px-3 text-md shadow-md'>
-                <h1 className='font-semibold text-white'>Following</h1>
+            <div className='cursor-default flex space-x-2 rounded-3xl p-2 px-3 text-md shadow-md'>
+                <h1 className='font-semibold'>Following</h1>
                 <h1 className='text-green-500 font-semibold'>{following.length}</h1>
             </div>
         </div>
         <hr></hr>
         <div className='flex space-x-8 items-center justify-center'>
-                <button className='bg-slate-200 cursor-default rounded-3xl px-3 py-1.5 font-semibold'>Saved Posts<span className='text-green-500 font-semibold ml-2'>{savedposts.length}</span></button>
-                <button className='bg-slate-200 cursor-default rounded-3xl px-3 py-1.5 font-semibold'>Liked Posts<span className='text-green-500 font-semibold ml-2'>{likedposts.length}</span></button>
+                <button className=' cursor-default rounded-3xl px-3 py-1.5 font-semibold'>Saved Posts<span className='text-green-500 font-semibold ml-2'>{savedposts.length}</span></button>
+                <button className='cursor-default rounded-3xl px-3 py-1.5 font-semibold'>Liked Posts<span className='text-green-500 font-semibold ml-2'>{likedposts.length}</span></button>
             
         </div>
         <hr></hr>
