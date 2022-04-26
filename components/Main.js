@@ -37,7 +37,7 @@ function Main() {
 
               </>:
               <>
-                <div className='flex text-slate-800 flex-col items-center py-10 p-5 space-y-5'>
+                <div className='flex text-slate-800 flex-col items-center py-10 p-5 space-y-5 min-h-100%'>
                   <h1 className='font-bold text-3xl sm:text-4xl drop-shadow-md shadow-orange-400'>Welcome to the-post</h1>
                   <p className='font-semibold text-lg sm:text-xl p-3 drop-shadow-sm'>Make fun with this web app, we think you really enjoy it. Web app like twitter,
                   To continue,
